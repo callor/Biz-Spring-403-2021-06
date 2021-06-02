@@ -8,21 +8,58 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+	<!-- 
+		servlet-context.xml 파일에는 Controller 클래스 이후의
+		할일들, 기능등에 대한 설정이 있다
+	 -->
 	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- 
+		클래스에 @Component 등등을 설정하였을때
+		Spring 컨테이너야 네가 좀 보관해 줘 라는 설정
+	 -->
 	<annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<!--
+		localhost:8080/hello/static/*** 로 요청을 하면
+		webapp/static 폴더에 있는 파일을 찾아라
+		그리고 바로 response 하라
+		이 요청은 Controller로 전달할 필요가 없다
+	  -->
+	<resources mapping="/static/**" location="/static/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- 
+		
+		Spring 컨테이너가 클래스를 객체로 생성하여 보관하는데
+		그때 생성된 객체들을 Web Project에서는 보통 bean이라고 부른다
+		
+		InternalResourceViewResolver 클래스를 사용하고 싶으니
+		bean로 만들어서 컨테이너에 보관해 달라
+		
+		이 클래스의 어떤 method 를 호출하려고 했더니
+		클래스 맴버변수(private) 중에
+		prefix라는 변수값과 suffix라는 변수값이 필요하더라
+		
+		그래서 미리 변수값을 setter 해 달라 라고 지정
+			property로 지정한다
+			
+	 -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.callor.hello" />
-	
+	<!-- 
+		component
+		클래스를 객체로 선언하여 만들어둔 요소들
+		언제든지 사용할 준비가 된 상태
+		
+		scan을 할때 scan 하지 않아도 될 클래스를 scan하면서
+		서버가 시작될때 비효율적인 기능을 수행하는 것을 방지하기 위하여
+		scan 범위를 c.c.h.controller, c.c.h.service로 제한해주는 것이 좋다
+	 -->
+	<context:component-scan base-package="com.callor.hello.controller" />
+	<context:component-scan base-package="com.callor.hello.service" />
 	
 	
 </beans:beans>
