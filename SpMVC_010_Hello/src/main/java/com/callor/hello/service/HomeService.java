@@ -1,5 +1,9 @@
 package com.callor.hello.service;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 /*
@@ -13,9 +17,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class HomeService {
-	
+
 	public Integer add(int num1, int num2) {
 		return num1 + num2;
+	}
+
+	public List<String> suffle() {
+		return null;
 	}
 
 }

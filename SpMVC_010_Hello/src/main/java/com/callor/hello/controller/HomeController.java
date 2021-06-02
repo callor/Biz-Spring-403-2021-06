@@ -63,6 +63,7 @@ public class HomeController {
 		System.out.println("첫번째 : " + homeService.add(200,500));
 		System.out.println("두번째 : " + hService.add(30,40));
 		
+		model.addAttribute("LIST",hService.suffle());
 		return "home";
 		
 	}
