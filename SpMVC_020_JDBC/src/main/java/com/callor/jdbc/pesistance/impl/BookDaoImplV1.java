@@ -11,16 +11,16 @@ import com.callor.jdbc.pesistance.BookDao;
 public class BookDaoImplV1 implements BookDao {
 	
 	// jdbc-context.xml 에 선언된 jdbcTemplate bean 사용하기
-	protected final JdbcTemplate JdbcTemplate;
+	protected final JdbcTemplate jdbcTemplate;
 	public BookDaoImplV1(JdbcTemplate jdbcTemplate) {
-		this.JdbcTemplate = jdbcTemplate;
+		this.jdbcTemplate = jdbcTemplate;
 	}
 
 	@Override
 	public List<BookVO> selectAll() {
 		// TODO Auto-generated method stub
 		String sql = " SELECT * FROM tbl_books ";
-		List<BookVO> books = JdbcTemplate.query(sql,
+		List<BookVO> books = jdbcTemplate.query(sql,
 				new BeanPropertyRowMapper<BookVO>(BookVO.class)				
 		);
 		return null;
