@@ -30,6 +30,8 @@
 	<context:component-scan 
 		base-package="com.callor.jdbc.controller" />
 	<context:component-scan 
+		base-package="com.callor.jdbc.service" />
+	<context:component-scan 
 		base-package="com.callor.jdbc.pesistance" />
 	
 	
