@@ -28,8 +28,9 @@
 	빨리 진행되도록 하기위한 조치
 	-->
 	<context:component-scan 
-	base-package="com.callor.jdbc.controller" />
-	
+		base-package="com.callor.jdbc.controller" />
+	<context:component-scan 
+		base-package="com.callor.jdbc.pesistance" />
 	
 	
 </beans:beans>
