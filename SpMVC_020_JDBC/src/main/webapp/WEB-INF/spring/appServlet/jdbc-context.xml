@@ -8,6 +8,15 @@
 		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- 
+	properties 파일의 내용을 
+	읽어서 변수 사용하기위한 bean 설정 
+	-->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="fileEncoding"  value="UTF-8"/>
+		<property name="location" value="/WEB-INF/spring/config/mysql.properties" />
+	</bean>
+
+	<!-- 
 	주석을 작성할때는 꺽쇠, 느낌표 기호 사용금지
 	
 	*-context.xml 파일
@@ -34,10 +43,10 @@
 	 -->
 	 <!-- jdbc를 통하여 DBMS에 연결하는 Connection생성 -->
 	 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	 	<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-	 	<property name="url" value="jdbc:mysql://localhost:3306/bookrent"/>
-	 	<property name="username" value="gbUser"/>
-	 	<property name="password" value="12345"/>
+	 	<property name="driverClassName" value="${mysql.driver}"/>
+	 	<property name="url" value="${mysql.url}"/>
+	 	<property name="username" value="${mysql.username}"/>
+	 	<property name="password" value="${mysql.password}"/>
 	 </bean>
 	 
 	 <!-- 
