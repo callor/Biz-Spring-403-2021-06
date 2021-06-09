@@ -2,12 +2,12 @@ package com.callor.jdbc.controller;
 
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.callor.jdbc.pesistance.BookDao;
 import com.callor.jdbc.service.RentService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +16,13 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class HomeController {
 
+	// string.properties 파일에 설정된 속성값 가져와서 변수에 setting
+	@Value("${user.name}")
+	protected String user_name;
+	
+	@Value("${user.email}")
+	protected String user_email;
+	
 	/*
 	 * 보편적인 Spring에서 bean을 사용하는 코드
 	 * @Autowired
@@ -31,6 +38,9 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+		
+		log.debug("Uesrn Name : {}", user_name);
+		log.debug("Uesrn Email : {}", user_email);
 		
 		rentService.viewBookAndComp();
 		return "home";

@@ -13,7 +13,12 @@
 	-->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="fileEncoding"  value="UTF-8"/>
-		<property name="location" value="/WEB-INF/spring/config/mysql.properties" />
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/spring/config/mysql.properties</value>
+				<value>/WEB-INF/spring/config/string.properties</value>
+			</list>
+		</property>
 	</bean>
 
 	<!-- 
