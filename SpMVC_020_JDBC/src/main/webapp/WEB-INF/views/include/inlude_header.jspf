@@ -3,6 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <style>
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
 header {
 	background-color: green;
 	color: white;
@@ -48,20 +53,41 @@ nav#main_nav li:hover {
 	background-color: #999;
 	cursor: pointer;
 }
+
+/* 
+	home.jsp에서 중간에 이미를 표현하는 부분의 CSS 인데
+	rootPath 변수 사용관계로 별도의 main_home.css에 둘수 없어서
+	여기에 둔다
+ */
+section#ad_sec article:nth-of-type(1) {
+	background: url("${rootPath}/static/images/ad_01.jpg") no-repeat;
+}
+
+section#ad_sec article:nth-of-type(2) {
+	background: url("${rootPath}/static/images/ad_02.jpg") no-repeat;
+}
+
+section#ad_sec article:nth-of-type(3) {
+	background: url("${rootPath}/static/images/ad_03.jpg") no-repeat;
+}
+
+section#ad_sec article:nth-of-type(4) {
+	background: url("${rootPath}/static/images/ad_04.jpg") no-repeat;
+}
+
+section#ad_sec article:nth-of-type(5) {
+	background: url("${rootPath}/static/images/ad_05.jpg") no-repeat;
+}
+
 </style>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-	  const nav = document.querySelector("nav#main_nav");
-
-	  nav.addEventListener("click", (e) => {
-	    let tagName = e.target.tagName;
-	    if (tagName === "LI") {
-	      let menuText = e.target.textContent;
-	      alert(menuText);
-	    }
-	  });
-	});
+	// jsp의 el tag의 변수를 js 변수로 다시 선언하기
+	// var 전역변수, 위치에 관계없이 어디서나 읽을 수 있는변수
+	// var rootPath = "/jdbc"
+	var rootPath = "${rootPath}";
+	
 </script>
+<script src="${rootPath}/static/js/main_nav.js?ver=2021-06-10-003"></script>
 <header>
 	<h1>도서정보 관리 2021</h1>
 	<p>빛고을 총판 도서관리 시스템 2021 v1</p>
