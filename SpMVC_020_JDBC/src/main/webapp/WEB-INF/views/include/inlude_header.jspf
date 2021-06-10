@@ -41,7 +41,7 @@ nav#main_nav ul {
 		다른 처리를 하지 않아도 비교적 깔끔한 모양을 얻을수 있더리가
 	*/
 nav#main_nav li {
-	padding: 5px 12px; /* top,bottom:5px, left, right: 12px */
+	padding: 10px 12px; /* top,bottom:5px, left, right: 12px */
 	transition: 0.5s;
 }
 

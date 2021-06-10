@@ -9,7 +9,7 @@
 <style>
 
 	form#login_form {
-		width:400px;
+		width:300px;
 		padding:40px;
 		margin:50px auto;
 		
