@@ -11,6 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(value="/author")
 public class AuthorController {
 
+	@RequestMapping(value= {"/",""},method=RequestMethod.GET)
+	public String list() {
+		return "author/list";
+	}
+	
 	@RequestMapping(value="/insert",method=RequestMethod.GET)
 	public String insert() {
 		return "author/input";
