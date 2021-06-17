@@ -10,7 +10,7 @@ public interface MemberService {
 	 * 		회원정보를 return하고
 	 * 그렇지 않으면 null을 return하는 구조로 설계
 	 */
-	public UserVO login(String uername, String password);
+	public UserVO login(String username, String password);
 	
 	public int join(UserVO userVO);
 	public UserVO viewInfo(String username);

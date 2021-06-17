@@ -114,7 +114,14 @@ section#ad_sec article:nth-of-type(n) {
 		<li>도서정보</li>
 		<li>출판사정보</li>
 		<li>저자정보</li>
-		<li>로그인</li>
-		<li>회원가입</li>
+		
+		<c:if test="${empty USERVO }">
+			<li>로그인</li>
+			<li>회원가입</li>
+		</c:if>
+		<c:if test="${not empty USERVO}">
+			<li>로그아웃</li>
+			<li>${USERVO.username} 님 반갑습니다</li>
+		</c:if>
 	</ul>
 </nav>
