@@ -69,6 +69,9 @@ public class HomeController {
 		 * 매개변수로 전달받은 Model class type변수인 model에
 		 * 속성을 하나 추가한다.
 		 * 속성의 이름은 user 이며, 값은 user_name에 담긴 값이다
+		 * 
+		 * Model 객체에 담긴 속성(변수)들은 jsp파일과 Rendering이 완료되면
+		 * 메모리에서 삭제된다.
 		 */
 		model.addAttribute("user",user_name);
 		

@@ -83,12 +83,25 @@
 	form#login_form button:hover {
 		background-color: #2ecc71;
 	}
+	
+	form#login_form div.msg {
+	
+		margin:5px auto;
+		padding:12px 16px;
+		border-radius:15px;
+		background-color: red;
+		color:yellow;
+		
+		font-size:20px;
+	
+	}
 
 </style>
 <body>
 	<%@ include file="/WEB-INF/views/include/inlude_header.jspf" %>
 	<form id="login_form" method="POST">
 		<h2>로그인</h2>
+		<div class="msg">${MSG}</div>
 		<input name="m_username" 
 					id="m_username" placeholder="사용자 ID"/>
 					
@@ -102,6 +115,12 @@
 
 </body>
 <script>
+
+// if( "${MSG}" === "NONE") {
+document.querySelector("div.msg").style.display = "${MSG}"
+// }
+
+
 document.querySelector("button.btn_join")
 	.addEventListener("click",()=>{
 		location.href = "${rootPath}/member/join";

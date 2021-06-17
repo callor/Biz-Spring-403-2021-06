@@ -103,7 +103,7 @@ section#ad_sec article:nth-of-type(n) {
 	var rootPath = "${rootPath}";
 	
 </script>
-<script src="${rootPath}/static/js/main_nav.js?ver=2021-06-10-003"></script>
+<script src="${rootPath}/static/js/main_nav.js?ver=2021-06-17-002"></script>
 <header>
 	<h1>도서정보 관리 2021</h1>
 	<p>빛고을 총판 도서관리 시스템 2021 v1</p>
@@ -115,13 +115,19 @@ section#ad_sec article:nth-of-type(n) {
 		<li>출판사정보</li>
 		<li>저자정보</li>
 		
+		<%-- 
+		USERVO 속성에는 로그인(정상인증된)한 사용자의 정보가
+		담겨 있게 된다
+		이 정보는 현재 서비스를 계속 사용하는 동안에는
+		언제 든지 어디서(어떤 jsp에서든지) 값을 사용(조회, 읽기)할수 있다
+		 --%>
 		<c:if test="${empty USERVO }">
 			<li>로그인</li>
 			<li>회원가입</li>
 		</c:if>
 		<c:if test="${not empty USERVO}">
 			<li>로그아웃</li>
-			<li>${USERVO.username} 님 반갑습니다</li>
+			<li id="mypage">${USERVO.username} 님 반갑습니다</li>
 		</c:if>
 	</ul>
 </nav>
