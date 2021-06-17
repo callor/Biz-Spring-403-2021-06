@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="/WEB-INF/views/include/include_head.jspf" %>
+
 <body>
 	<%@ include file="/WEB-INF/views/include/inlude_header.jspf" %>
 	<section id="main_sec">

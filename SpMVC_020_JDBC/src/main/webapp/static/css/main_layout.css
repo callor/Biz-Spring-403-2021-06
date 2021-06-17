@@ -1,9 +1,47 @@
 @charset "UTF-8";
 
-h1.page_title {
-	width: 90%;
-	margin: 10px auto;
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
+
+body {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100vh;
+}
+
+section.main_sec {
+	flex:auto;
+	overflow: auto;
+}
+
+header {
+	background-color: green;
+	color: white;
+	text-shadow: 1px 1px 1px black;
+	text-align: center;
+	padding: 2rem;
+}
+
+/*
+style지정을 할때
+
+tag에 id나 class를 부착하지 않고 지정하는 경우
+1. 현재 main_layout.css 파일은 모든 jsp에서 공통으로 include
+	모든 jsp에 있는 table에 공통으로 속성이 적용된다
+	
+2. 만약 특정한 jsp 파일에서만 table tag에 속성을 부여하고 싶으면
+	table tag에 id나 class 를 지정하고
+	table#id, table.class 형식으로 style을 지정해야 한다
+
+3. 전체 프로젝트의 view를 일관되게 구현하고자 할때
+	대표적인 tag에 style을 지정하고
+	include 하여 사용하는 방법
+	
+*/
 
 table {
 	border-collapse: collapse;
