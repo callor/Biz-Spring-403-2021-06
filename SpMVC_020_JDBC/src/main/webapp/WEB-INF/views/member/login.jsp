@@ -16,6 +16,11 @@ form#login_form {
 	border-radius: 20px;
 	z-index: 500;
 	
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+	
 	animation-name : aniTopDown;
 	animation-duration:0.8s;
 }
@@ -84,7 +89,6 @@ form#login_form div.msg {
 	
 	to {
 		top:50%;
-		transform : translateY(-50%);
 		opacity: 1;
 	}
 

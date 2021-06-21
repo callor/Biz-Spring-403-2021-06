@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.callor.jdbc.model.CompVO;
 import com.callor.jdbc.pesistance.CompDao;
@@ -41,6 +42,13 @@ public class CompController {
 		model.addAttribute("COMPS",compList);
 		return "comp/list";
 	
+	}
+//	@ResponseBody
+	@RequestMapping(value="/list",method=RequestMethod.GET)
+	public String getList(Model model) {
+		List<CompVO> compList = compService.selectAll();
+		model.addAttribute("COMPS",compList);
+		return "comp/list";
 	}
 	
 	// localhost:8080/jdbc/comp/insert로 호출되는 함수

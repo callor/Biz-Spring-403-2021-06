@@ -11,6 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
       let text = e.target.value;
 
       if (id === "bk_ccode") {
+        fetch(`${rootPath}/comp/list`)
+          .then((res) => {
+            return res.text();
+          })
+          .then((result) => {
+            let div = document.createElement("div");
+            div.innerHTML = result;
+            modal.appendChild(div);
+          });
+
         modal.style.display = "block";
       } else if (id === "bk_acode") {
         modal.style.display = "block";
