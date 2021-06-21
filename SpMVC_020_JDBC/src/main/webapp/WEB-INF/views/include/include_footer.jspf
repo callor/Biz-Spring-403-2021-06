@@ -17,3 +17,7 @@ address {
 <footer>
 	<address>CopyRight &copy; callor@callor.com</address>
 </footer>
+
+<div id="modal">
+	<span>X</span>
+</div>

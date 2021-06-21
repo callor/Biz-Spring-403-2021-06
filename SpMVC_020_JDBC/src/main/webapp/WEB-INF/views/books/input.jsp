@@ -11,6 +11,10 @@ form#book_input input.search {
 	width:30%;
 }
 </style>
+<script>
+	var rootPath = "${rootPath}"
+</script>
+<script src="${rootPath}/static/js/book_input.js?ver=2021-06-21-005"></script>
 <body>
 	<%@ include file="/WEB-INF/views/include/inlude_header.jspf" %>
 	<section class="main_sec">
@@ -58,11 +62,4 @@ form#book_input input.search {
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf" %>
 
 </body>
-<script>
-document.querySelector("button.btn_book_insert")
-	.addEventListener("click",()=>{
-		location.href = "${rootPath}/books/insert";
-});
-</script>
-
 </html>
