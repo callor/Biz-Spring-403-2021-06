@@ -21,6 +21,8 @@
 				<th>가격</th>
 				<th>페이지수</th>
 			</tr>
+
+			
 			<tr>
 				<td>ISBN</td>
 				<td>도서명</td>
