@@ -43,7 +43,7 @@ public class CompController {
 		return "comp/list";
 	
 	}
-//	@ResponseBody
+
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String getList(Model model) {
 		List<CompVO> compList = compService.selectAll();
