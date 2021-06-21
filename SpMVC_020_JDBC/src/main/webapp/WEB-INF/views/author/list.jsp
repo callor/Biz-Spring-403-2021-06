@@ -19,20 +19,23 @@
 				<th>주요장르</th>
 			</tr>
 			<c:choose>
-				<c:when test="${empty AUTH-LIST}">
-
+				<c:when test="${empty AUTH_LIST}">
+					<tr>
+						<td colspan="5">데이터가 없습니다</td>
+					</tr>
 				</c:when>
 				<c:otherwise>
-
+					<c:forEach items="${AUTH_LIST}" var="AUTH">
+						<tr>
+							<td>${AUTH.au_code}</td>
+							<td>${AUTH.au_name}</td>
+							<td>${AUTH.au_tel}</td>
+							<td>${AUTH.au_addr}</td>
+							<td>${AUTH.au_genre}</td>
+						</tr>
+					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-			<tr>
-				<td>CODE</td>
-				<td>저자명</td>
-				<td>전화번호</td>
-				<td>주소</td>
-				<td>주요장르</td>
-			</tr>
 		</table>
 
 		<div class="btn_box">
