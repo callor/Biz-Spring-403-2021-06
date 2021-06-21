@@ -59,7 +59,7 @@ table td {
 	margin-left: 30px;
 	text-align: center;
 	
-	width:auto;
+	max-width:auto;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
