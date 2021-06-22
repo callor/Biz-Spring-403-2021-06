@@ -7,37 +7,6 @@
 <html>
 <%@ include file="/WEB-INF/views/include/include_head.jspf"%>
 <style>
-	section.search_sec {
-		
-		/* 
-		바깥쪽 box의 position이 fiexd로 되어 있기 때문에
-		내부의 box를 바깥 box의 중앙에 배치하기 위하여
-		position을 absolute로 설정하고
-		위치를 지정하였다
-		*/
-		position:absolute;
-		top:50%;
-		left:50%;
-		/* 자기 몸체크기의 x, y방향으로 50%만큼 후진 */
-		transform:translate(-50%,-50%);
-		
-		background-color: white;
-		opacity:1;
-		width: 80%;
-		height: 500px;
-		display: flex;
-		justify-content: center;
-		align-content: center;
-		
-		overflow: auto;
-		z-index: 1000;'
-		
-	}
-	section.search_sec table {
-		margin:10px auto;
-		width:95%;
-		opacity:1;
-	}
 </style>
 <body>
 	<section class="search_sec">
@@ -53,11 +22,11 @@
 			<c:choose>
 				<c:when test="${empty COMPS}">
 					<tr>
-						<td cospan="6">데이터가 없음</td>
+						<td colspan="6">데이터가 없음</td>
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${COMPS}" var="COMP" varStatus="seq">
-						<tr>
+						<tr data-ccode="${COMP.cp_code}" class="search_comp">
 							<td>${COMP.cp_code}</td>
 							<td>${COMP.cp_title}</td>
 							<td>${COMP.cp_ceo}</td>
@@ -73,9 +42,36 @@
 
 </body>
 <script>
-document.querySelector("button.btn_insert.comp")
-	.addEventListener("click",()=>{
-		location.href = "${rootPath}/comp/insert";
+document.querySelector("search.search_sec")
+	.addEventListener("click",(e)=>{
+
+		alert("click")
+		let target = e.target
+		let tagName = target.tagName 
+		if(tagName === "TD") {
+			
+			/*
+			table에 click event가 발생하면
+			가장 중심부에 있는 TD가 event를 최종 수신한다
+			그러면 TD가 클릭되었을때 와 같은 효과를 낸다
+			
+			TD가 클릭되면 어떤 데이터를 가져오고 싶다
+			TD는 여러개가 있으므로 어떤 TD가 클릭될지 모른다
+			1개의 TD에만 데이터를 담아두고
+			그 TD만 클릭했을때 반응하도록 하면
+			사용자가 상당히 불편할 것이다
+			
+			그래서 TD가 선택되면(click 되면)
+			TD를 감싸고 있는 TR이 누구인지 알아보고 selector 하라
+				e.target.closest("TR")
+			
+			*/
+			let ccode = e.target.closest("TR").dataset.ccode
+			alert("출판사 코드 : " + ccode)
+		}
+		
+		
+		
 });
 </script>
 

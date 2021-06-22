@@ -10,6 +10,7 @@ public interface AuthorService {
 	public AuthorVO findByACode(String au_code);
 	public List<AuthorVO> findByAName(String au_name);
 	public List<AuthorVO> findByATel(String au_tel);
+	public List<AuthorVO> findByNameAndTel(String au_name);
 	
 
 }

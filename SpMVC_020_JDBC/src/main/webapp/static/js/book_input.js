@@ -11,11 +11,21 @@ document.addEventListener("DOMContentLoaded", () => {
     let key = e.key;
     let tagName = e.target.tagName;
     let id = e.target.id;
+    let className = e.target.className;
+
     if (key === "Enter" && tagName === "INPUT") {
       let text = e.target.value;
+      let urlPath = rootPath;
 
       if (id === "bk_ccode") {
-        fetch(`${rootPath}/comp/search`)
+        urlPath += `/comp/search?cp_title=${text}`;
+      } else if (id === "bk_acode") {
+        urlPath += `/author/search?au_name=${text}`;
+      }
+
+      if (className === "search") {
+        modal.style.display = "block";
+        fetch(urlPath)
           .then((res) => {
             return res.text();
           })
@@ -28,10 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
             div.setAttribute("id", "div_search");
             document.querySelector("body").appendChild(div);
           });
-
-        modal.style.display = "block";
-      } else if (id === "bk_acode") {
-        modal.style.display = "block";
       }
     }
   });
