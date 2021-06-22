@@ -1,14 +1,18 @@
 @charset "UTF-8";
 section#main_sec {
 	flex:1;
-	width: 100%;
+	width: 100vw;
 	margin: 5px auto;
 	border: 1px solid #999;
 	display: flex;
+	overflow: auto;
 }
+
+
 
 section#main_sec article {
 	flex: 1;
+	width:30%;
 	border: 1px solid green;
 	margin: 6px 3px;
 	padding: 5px;
@@ -22,12 +26,15 @@ section#main_sec article ul, section#main_sec article ol {
 section#main_sec article li {
 	margin: 0 20px;
 	padding: 0 7px;
-	
-	width: 100%;
+
+	/* li tag에 ellipsis를 적용하기 위하여 article box의 width를 위에서 먼저 지정 */
+	/* 감싸고 있는 box의 width를 지정하면 내부의 tag는 자체적으로 모습을 갖춘다 */	
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+
+
 
 section#ad_sec {
 	width: 100%;

@@ -37,7 +37,7 @@
 					<c:when test="${not empty BOOKS}">
 						<c:forEach var="index" begin="0" end="4">
 							<li>${BOOKS[index].bk_title},&nbsp;&nbsp;
-								${BOOKS[index].bk_ccode},&nbsp;&nbsp; ${BOOKS[index].cp_acode}</li>
+								${BOOKS[index].bk_ccode},&nbsp;&nbsp; ${BOOKS[index].bk_acode}</li>
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
@@ -55,7 +55,7 @@
 						<c:forEach var="index" begin="0" end="4">
 							<li>${AUTHOS[index].au_name},&nbsp;&nbsp;
 								${AUTHOS[index].au_tel},&nbsp;&nbsp; 
-								${BOOKS[index].au_genre}</li>
+								${AUTHOS[index].au_genre}</li>
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
