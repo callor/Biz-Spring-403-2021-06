@@ -44,11 +44,11 @@ public class CompController {
 	
 	}
 
-	@RequestMapping(value="/list",method=RequestMethod.GET)
+	@RequestMapping(value="/search",method=RequestMethod.GET)
 	public String getList(Model model) {
 		List<CompVO> compList = compService.selectAll();
 		model.addAttribute("COMPS",compList);
-		return "comp/list";
+		return "comp/search";
 	}
 	
 	// localhost:8080/jdbc/comp/insert로 호출되는 함수

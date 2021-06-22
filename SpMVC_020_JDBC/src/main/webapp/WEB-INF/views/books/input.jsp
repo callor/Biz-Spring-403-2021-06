@@ -10,11 +10,16 @@
 form#book_input input.search {
 	width:30%;
 }
+form#book_input span.name {
+	color:blue;
+	font-weight: bold;
+	margin-left:10px;
+}
 </style>
 <script>
 	var rootPath = "${rootPath}"
 </script>
-<script src="${rootPath}/static/js/book_input.js?ver=2021-06-21-021"></script>
+<script src="${rootPath}/static/js/book_input.js?ver=2021-06-22-004"></script>
 <body>
 	<%@ include file="/WEB-INF/views/include/inlude_header.jspf" %>
 	<section class="main_sec">
@@ -32,12 +37,12 @@ form#book_input input.search {
 		<div>
 			<label>출판사</label>
 			<input class="search" name="bk_ccode" id="bk_ccode" placeholder="">
-			<span>출판사명</span>
+			<span id="cp_title" class="name">출판사명</span>
 		</div>
 		<div>
 			<label>저자</label>
 			<input class="search" name="bk_acode" id="bk_acode" placeholder="">
-			<span>저자명</span>
+			<span id="au_name" class="name">저자명</span>
 		</div>
 		<div>
 			<label>출판년도</label>
