@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.callor.score.dao.SubjectDao">
+
+	<select id="selectAll" resultType="SubjectVO">
+		SELECT * FROM tbl_subject
+	</select>
+	<select id="findById" resultType="SubjectVO">
+		SELECT * FROM tbl_subject WHERE sb_code = #{sb_code}
+	</select>
+	<insert id="insert" parameterType="SubjectVO">
+		INSERT INTO
+			tbl_subject (
+				sb_code,sb_name,sb_prof
+		)VALUES(
+			#{sb_code},#{sb_name},#{sb_prof}
+		)
+	</insert>
+	<update id="update" parameterType="SubjectVO">
+		UPDATE tbl_subject SET
+			sb_name	= #{sb_name},
+			sb_prof	= #{sb_prof},
+		WHERE sb_code = #{sb_code}
+	</update>
+	<delete id="delete">
+		DELETE FROM tbl_subject WHERE sb_code = #{sb_code}
+	</delete>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.callor.score.dao.StudentDao">
+
+	<select id="selectAll" resultType="StudentVO">
+		SELECT * FROM tbl_student
+	</select>
+	<select id="findById" resultType="StudentVO">
+		SELECT * FROM tbl_student WHERE
+		st_num = #{st_num}
+	</select>
+	<insert id="insert" parameterType="StudentVO">
+		INSERT INTO
+		tbl_studetn(
+		st_num, st_name, st_dept, st_grade, st_tel, st_addr
+		)VALUES(
+		#{st_num}, #{st_name}, #{st_dept}, #{st_grade}, #{st_tel}, #{st_addr}
+		)
+	</insert>
+	<update id="update" parameterType="StudentVO">
+		UPDATE tbl_student SET
+		st_num =#{st_num},
+		st_name =#{st_name},
+		st_dept =#{st_dept},
+		st_grade =#{st_grade},
+		st_tel =#{st_tel},
+		st_addr =#{st_addr}
+		WHERE st_num= #{st_num}
+	</update>
+	<delete id="delete">
+		DELETE FROM tbl_student WHERE st_num = #{st_num}
+	</delete>
+</mapper>

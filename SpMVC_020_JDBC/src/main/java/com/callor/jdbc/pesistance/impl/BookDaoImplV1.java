@@ -35,7 +35,7 @@ public class BookDaoImplV1 implements BookDao {
 		sql += " bk_isbn,";
 		sql += " bk_title,";
 		sql += " CONCAT( '(', bk_ccode , ')', C.cp_title ) as bk_ccode ,";
-		sql += " A.au_name as bk_acode ,";
+		sql += " CONCAT( '(', A.au_name , ')' ) as bk_acode ,";
 		sql += " bk_date,";
 		sql += " bk_price,";
 		sql += " bk_pages ";

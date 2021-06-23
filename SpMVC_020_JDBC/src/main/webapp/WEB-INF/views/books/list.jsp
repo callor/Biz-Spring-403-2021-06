@@ -33,9 +33,9 @@
 						<tr>
 							<td>${ST.index}</td>
 							<td>${BOOK.bk_isbn}</td>
-							<td>${BOOK.bk_title}</td>
-							<td>${BOOK.bk_ccode}</td>
-							<td>${BOOK.bk_acode}</td>
+							<td><span><label class="truncate">${BOOK.bk_title}</label></span></td>
+							<td><span><label class="truncate">${BOOK.bk_ccode}</label></span></td>
+							<td><span><label class="truncate">${BOOK.bk_acode}</label></span></td>
 							<td>${BOOK.bk_date}</td>
 							<td>${BOOK.bk_price}</td>
 							<td>${BOOK.bk_pages}</td>

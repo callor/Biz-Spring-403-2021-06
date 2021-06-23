@@ -3,10 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <style>
-h1.page_title {
-	width: 90%;
-	margin: 10px auto;
-}
+
 
 nav#main_nav {
 	background-color: blue;

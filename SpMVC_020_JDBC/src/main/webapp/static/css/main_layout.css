@@ -13,6 +13,13 @@ body {
 	height: 100vh;
 }
 
+h1.page_title {
+	width: 90%;
+	
+	/* top, right, bottom, left */
+	margin: 10px auto 0 auto;
+}
+
 section.main_sec {
 	flex: auto;
 	overflow: auto;
@@ -43,6 +50,14 @@ tag에 id나 class를 부착하지 않고 지정하는 경우
 	
 */
 table {
+	/*
+	csss 2.1 적용 spec
+	table구성했을때 td에 있는 text(content)의
+	길이가 변동되거나 할때
+	table의 전체 모양이 움찔거리현상을 
+	방지하는 속성
+	*/
+	table-layout:fixed;
 	border-collapse: collapse;
 	border-spacing: 0;
 	width: 90%;
@@ -52,23 +67,59 @@ table {
 table th, td {
 	border-top: 1px solid #aaa;
 	padding: 5px 8px;
+	/* text font 크기에 따라 높이를 고정하는 속성 */
+	height: 2rem;
 }
 
 table td {
 	margin-left: 30px;
 	text-align: left;
 	padding-left: 10px;
-	max-width: 0;
+
+}
+
+/* td의 text가 넘칠경우 ellipsis를 적용하는데
+단순히 td에 적용하면 이웃하는 다른 td의 글자와 겹치는 현상이 발생
+이것을 방지하기 위하여 속성 설정
+*/
+table td span {
+	position: relative;
+	height: 1.2rem;
+	display: inline-block;
+	margin-top: 5px;
+}
+
+table td label.truncate {
+	max-width: 80px;
 	overflow: hidden;
+	display:inline-block;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	cursor: inherit;
 }
 
 /* td에 마우스 hover되면 ellipsis를 해제하여 text를 그대로 보여주기 */
+/*
 table td:hover {
+	
 	overflow: visible;
 	text-overflow: inherit;
+	
 }
+*/
+
+table td:hover label.truncate {
+	
+	position: absolute;
+	max-width: none;
+	background-color: yellowgreen;
+	overflow: visible;
+	top:-6px;
+	padding:5px 20px 5px 0;
+	z-index: 100;
+	
+}
+
 
 table tr:last-child td {
 	border-bottom: 1px solid #aaa;
