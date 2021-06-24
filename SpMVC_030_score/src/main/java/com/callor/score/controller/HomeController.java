@@ -25,14 +25,14 @@ public class HomeController {
 	protected final StudentServcie stService;
 
 
-	@ResponseBody
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public Map<String,Object> home(Locale locale, Model model) {
+	public String home(Locale locale, Model model) {
 	
 		List<StudentVO> stList = stService.selectAll();
 		Map<String,Object> maps = stService.selectMaps();
 		log.debug("Controller {} ", stList.toString());
-		return maps;
+		
+		return "home";
 	
 	}
 	
