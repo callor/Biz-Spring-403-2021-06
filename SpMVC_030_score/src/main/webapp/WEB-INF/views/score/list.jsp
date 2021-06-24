@@ -36,13 +36,14 @@
 						<td>${SCORE.sc_sbcode}</td>
 						<td>${SCORE.sc_sbname}</td>
 						<td class="number">${SCORE.sc_score}</td>
+					</tr>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
 </table>
 <div class="btn_box">
 	<button class="score insert">성적등록</button>
-	<button class="score student insert">학생정보 바로가기</button>
+	<button class="score student list">학생정보 바로가기</button>
 </div>
 
 

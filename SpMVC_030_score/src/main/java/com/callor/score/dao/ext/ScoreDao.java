@@ -1,7 +1,8 @@
-package com.callor.score.dao;
+package com.callor.score.dao.ext;
 
 import java.util.List;
 
+import com.callor.score.dao.GenericDao;
 import com.callor.score.model.ScoreDTO;
 import com.callor.score.model.ScoreVO;
 

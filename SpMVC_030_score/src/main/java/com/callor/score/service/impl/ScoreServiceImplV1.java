@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.callor.score.dao.ScoreDao;
+import com.callor.score.dao.ext.ScoreDao;
 import com.callor.score.model.ScoreDTO;
 import com.callor.score.service.ScoreService;
 

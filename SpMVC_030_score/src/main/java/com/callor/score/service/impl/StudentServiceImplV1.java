@@ -6,9 +6,9 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.callor.score.dao.ScoreDao;
-import com.callor.score.dao.StudentDao;
-import com.callor.score.dao.SubjectDao;
+import com.callor.score.dao.ext.ScoreDao;
+import com.callor.score.dao.ext.StudentDao;
+import com.callor.score.dao.ext.SubjectDao;
 import com.callor.score.model.ScoreDTO;
 import com.callor.score.model.ScoreVO;
 import com.callor.score.model.StudentVO;

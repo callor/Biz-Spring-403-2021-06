@@ -32,7 +32,7 @@ public class HomeController {
 		Map<String,Object> maps = stService.selectMaps();
 		log.debug("Controller {} ", stList.toString());
 		
-		return "home";
+		return "redirect:/score";
 	
 	}
 	
