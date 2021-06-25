@@ -61,9 +61,8 @@
 	<insert id="insertOrUpdate">
 		INSERT INTO tbl_score(sc_stnum, sc_sbcode, sc_score)
 		VALUES(#{st_num},#{sc_sbcode}, #{sc_score})
-		ON DUPLICATE KEY UPDATE 
-		sc_stnum =#{st_num},
-		sc_sbcode = #{sc_sbcode}
+		ON DUPLICATE  KEY UPDATE
+		sc_score = #{sc_score} 
 	</insert>
 	
 	<update id="update" parameterType="ScoreVO">
