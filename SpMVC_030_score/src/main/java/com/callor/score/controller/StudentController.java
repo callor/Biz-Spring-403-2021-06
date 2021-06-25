@@ -7,9 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.callor.score.model.ScoreInputVO;
 import com.callor.score.model.StudentVO;
-import com.callor.score.model.SubjectAndScoreDTO;
-import com.callor.score.service.ScoreService;
 import com.callor.score.service.StudentServcie;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class StudentController {
 
 	protected final StudentServcie stService;
-	protected final ScoreService scService;
+	// protected final ScoreService scService;
 	
 	@RequestMapping(value= {"/",""},method=RequestMethod.GET)
 	public String list(Model model) {
@@ -64,17 +63,37 @@ public class StudentController {
 	@RequestMapping(value="/detail",method=RequestMethod.GET)
 	public String detail(String st_num,Model model) {
 		
-		List<SubjectAndScoreDTO> ssList 
-			= scService.selectScore(st_num);
+//		List<SubjectAndScoreDTO> ssList 
+//			= scService.selectScore(st_num);
 	
+		String ret = stService.detail(model,st_num);
 		
 		// StudentVO stVO = stService.find
+//		model.addAttribute("SSLIST",ssList);
 		
-		model.addAttribute("SSLIST",ssList);
 		model.addAttribute("BODY","STUDENT_DETAIL");
 		return "home";
 	
 	}
+	
+	@RequestMapping(value="/detail",method=RequestMethod.POST)
+//	public String detail(
+//		@RequestParam(name="subject") List<String> subject,
+//		@RequestParam(name="score") List<String> score) {
+
+	public String detail(ScoreInputVO scInputVO) {
+		
+//		log.debug("Subject: {} ", subject.toString());
+//		log.debug("Score: {}",score.toString());
+		
+		log.debug("Score Input {}", scInputVO.toString());
+		
+		String ret = stService.scoreInput(scInputVO);
+		
+		return "home";
+	}
+	
+	
 	
 	
 	

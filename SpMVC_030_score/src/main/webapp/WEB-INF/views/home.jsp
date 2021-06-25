@@ -124,6 +124,48 @@ button:hover {
 	cursor: pointer;
 } 
 
+button.save {
+	background-color: blue;
+	color:white;
+}
+
+button.reset {
+	background-color: olive;
+	color:white;
+}
+
+button.list {
+	background-color: green;
+	color:white;
+}
+
+button.home {
+	background-color: black;
+	color:white;
+	text-shadow: 1px 1px 1px black;
+}
+
+button.insert {
+	background-color: rgba(0,0,200,1);
+	color:white;
+}
+
+button.update {
+	background-color: green;
+	color:white;
+}
+
+button.delete {
+	background-color: red;
+	color:yellow;
+}
+
+button.student.list {
+	background-color: orange;
+	color:white;
+	text-shadow: 1px 1px 1px black;
+}
+
 form {
 	width:90%;
 	margin:0 auto 10px auto;
@@ -160,25 +202,6 @@ form input:hover {
 	background: #bbb;
 }
 
-form button.save {
-	background-color: blue;
-	color:white;
-}
-
-form button.reset {
-	background-color: olive;
-	color:white;
-}
-
-form button.list {
-	background-color: green;
-	color:white;
-}
-
-form button.home {
-	background-color: black;
-	color:white;
-}
 
 
 
@@ -244,6 +267,28 @@ if(home) {
 	})
 	
 }
+
+
+let table = document.querySelector("table.detail")
+if(table) {
+	table.addEventListener("click",(e)=>{
+
+		let target = e.target
+		let tagName = target.tagName
+		if(tagName === "TD") {
+			let tr = target.closest("TR")
+			let stNum = tr.dataset.stnum
+			location.href 
+			= "${rootPath}/student/detail?st_num=" + stNum
+		}
+	})
+}
+
+
+
+
+
+
 </script>
 
 </html>

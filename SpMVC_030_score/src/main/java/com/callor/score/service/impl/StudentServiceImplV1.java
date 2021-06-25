@@ -7,13 +7,16 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.callor.score.dao.ext.ScoreDao;
 import com.callor.score.dao.ext.StudentDao;
 import com.callor.score.dao.ext.SubjectDao;
 import com.callor.score.model.ScoreDTO;
+import com.callor.score.model.ScoreInputVO;
 import com.callor.score.model.ScoreVO;
 import com.callor.score.model.StudentVO;
+import com.callor.score.model.SubjectAndScoreDTO;
 import com.callor.score.model.SubjectVO;
 import com.callor.score.service.StudentServcie;
 
@@ -112,5 +115,43 @@ public class StudentServiceImplV1 implements StudentServcie{
 	public int update(StudentVO stVO) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	@Override
+	public String detail(Model model, String st_num) {
+		
+		String ret = null;
+		
+		List<SubjectAndScoreDTO> ssList 
+				= scDao.selectSubjectAndScore(st_num);
+		StudentVO stVO = stDao.findById(st_num);
+		Integer scoreCount = scDao.scoreCount(st_num);
+		Integer scoreSum = scDao.scoreSum(st_num);
+		
+		ret = ssList != null ? "OK" : "SS_FAIL";
+		ret += stVO != null ? "OK" : "ST_FAIL";
+		
+		model.addAttribute("SC_COUNT",scoreCount);
+		model.addAttribute("SC_SUM",scoreSum);
+		model.addAttribute("SSLIST",ssList);
+		model.addAttribute("STD",stVO);
+		
+		return ret;
+		
+	}
+	@Override
+	public String scoreInput(ScoreInputVO scInputVO) {
+
+		log.debug("Service RCV {}", scInputVO.toString());
+		
+		int size = scInputVO.getSubject().size();
+		for(int i = 0 ; i < size ; i++) {
+			scDao.insertOrUpdate(
+					scInputVO.getSt_num(), 
+					scInputVO.getSubject().get(i), 
+					scInputVO.getScore().get(i)
+			);
+		}
+		return null;
 	}
 }
