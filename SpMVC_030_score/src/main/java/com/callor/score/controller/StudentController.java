@@ -38,16 +38,23 @@ public class StudentController {
 	@RequestMapping(value="/insert",method=RequestMethod.GET)
 	public String insert(Model model) {
 		
-		stService.makeStNum();
+		StudentVO stVO = new StudentVO();
+		stVO.setSt_num( stService.makeStNum() );
 		
+		model.addAttribute("STD",stVO);
 		model.addAttribute("BODY","STUDENT_INPUT");
 		return "home";
+		
 	}
 
 	@RequestMapping(value="/insert",method=RequestMethod.POST)
 	public String insert(StudentVO studentVO, Model model) {
+		
+		log.debug("Req 학생정보 : {}", studentVO.toString());
+		
+		int ret = stService.insert(studentVO);
+		
 		model.addAttribute("BODY","STUDENT_INPUT");
-		return "home";
+		return "redirect:/student";
 	}
-	
 }

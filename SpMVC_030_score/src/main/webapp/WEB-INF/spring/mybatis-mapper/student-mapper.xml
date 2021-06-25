@@ -6,7 +6,9 @@
 <mapper namespace="com.callor.score.dao.ext.StudentDao">
 
 	<select id="selectAll" resultType="StudentVO">
-		SELECT * FROM tbl_student
+		SELECT * FROM tbl_student 
+		ORDER BY st_num DESC
+		LIMIT 10
 	</select>
 	<select id="findById" resultType="StudentVO">
 		SELECT * FROM tbl_student WHERE
@@ -24,7 +26,7 @@
 	
 	<insert id="insert" parameterType="StudentVO">
 		INSERT INTO
-		tbl_studetn(
+		tbl_student(
 		st_num, st_name, st_dept, st_grade, st_tel, st_addr
 		)VALUES(
 		#{st_num}, #{st_name}, #{st_dept}, #{st_grade}, #{st_tel}, #{st_addr}

@@ -13,7 +13,7 @@ public interface StudentServcie {
 	public String makeStNum();
 	public String makeStNum(String prefix);
 	
-	public String insert(StudentVO stVO);
-	public String update(StudentVO stVO);
+	public int insert(StudentVO stVO);
+	public int update(StudentVO stVO);
 
 }

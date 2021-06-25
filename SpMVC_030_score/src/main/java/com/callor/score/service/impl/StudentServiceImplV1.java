@@ -97,13 +97,20 @@ public class StudentServiceImplV1 implements StudentServcie{
 		return newStNum;
 	}
 	@Override
-	public String insert(StudentVO stVO) {
+	public int insert(StudentVO stVO) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		/*
+		 * insert를 수행하는 시점에서 학번을 만들고 싶으면
+		 */
+		// String newStNum = this.makeStNum();
+		// stVO.setSt_num(newStNum);
+		return stDao.insert(stVO);
+	
 	}
 	@Override
-	public String update(StudentVO stVO) {
+	public int update(StudentVO stVO) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 }
