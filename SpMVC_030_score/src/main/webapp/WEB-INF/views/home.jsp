@@ -200,6 +200,10 @@ form button.home {
 			<c:when test="${BODY == 'STUDENT_INPUT' }">
 				<%@ include file="/WEB-INF/views/student/input.jsp" %>
 			</c:when>
+			<c:when test="${BODY == 'STUDENT_DETAIL' }">
+				<%@ include file="/WEB-INF/views/student/detail.jsp" %>
+			</c:when>
+
 			<c:otherwise>
 				<%@ include file="/WEB-INF/views/main.jsp"%>
 			</c:otherwise>

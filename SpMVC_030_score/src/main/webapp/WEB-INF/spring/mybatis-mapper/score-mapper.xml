@@ -26,6 +26,19 @@
 			ORDER BY sc_stnum, sc_sbcode
 	</select>
 	
+	<select id="selectSubjectAndScore" 
+			resultType="SubjectAndScoreDTO">
+		SELECT 
+			SB.sb_code as ss_code, 
+			SB.sb_name as ss_stname, 
+			SB.sb_prof as ss_prof,
+			SC.sc_stnum as ss_stnum, 
+			SC.sc_score as ss_score
+				FROM tbl_subject SB
+			LEFT JOIN tbl_score SC
+				ON SC.sc_sbcode = SB.sb_code 
+	        	AND SC.sc_stnum = #{st_num};
+	</select>
 	
 	
 	<insert id="insert" parameterType="ScoreVO">
