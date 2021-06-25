@@ -37,6 +37,9 @@ public class StudentController {
 	
 	@RequestMapping(value="/insert",method=RequestMethod.GET)
 	public String insert(Model model) {
+		
+		stService.makeStNum();
+		
 		model.addAttribute("BODY","STUDENT_INPUT");
 		return "home";
 	}

@@ -12,6 +12,16 @@
 		SELECT * FROM tbl_student WHERE
 		st_num = #{st_num}
 	</select>
+
+	<!-- 
+	mapper의 각 기능의 id값은 Dao에 설정된 method 이름으로 설정 
+	Dao의 method 가 id로 사용되는 까닭에
+	Mybatis에서는 Dao의 method를 중복정의 할수 없다.
+	-->
+	<select id="getMaxStNum" resultType="String">
+		SELECT MAX(st_num) AS st_num FROM tbl_student
+	</select>
+	
 	<insert id="insert" parameterType="StudentVO">
 		INSERT INTO
 		tbl_studetn(

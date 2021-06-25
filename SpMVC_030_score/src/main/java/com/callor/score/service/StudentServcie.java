@@ -10,4 +10,10 @@ public interface StudentServcie {
 	public List<StudentVO> selectAll();
 	public Map<String,Object> selectMaps();
 	
+	public String makeStNum();
+	public String makeStNum(String prefix);
+	
+	public String insert(StudentVO stVO);
+	public String update(StudentVO stVO);
+
 }

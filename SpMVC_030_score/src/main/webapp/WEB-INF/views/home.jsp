@@ -42,7 +42,8 @@ section#main_sec {
 	width: 100wv;
 	display: flex;
 	flex-direction: column;
-	background: linear-gradient(to bottom, #333, #eee);
+	background: linear-gradient(to bottom, transparent, mistyrose),
+	url("${rootPath}/static/images/section_background.jpg");
 	background-size: 100% 100%;
 	background-attachment: fixed;
 	

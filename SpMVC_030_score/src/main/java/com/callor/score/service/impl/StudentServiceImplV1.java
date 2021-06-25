@@ -1,5 +1,7 @@
 package com.callor.score.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,5 +59,51 @@ public class StudentServiceImplV1 implements StudentServcie{
 		maps.put("과목",sbList);
 		maps.put("View",scViewList);
 		return maps;
+	}
+	
+	// 현재 날짜에서 연도를 추출하여 학번 만들기
+	@Override
+	public String makeStNum() {
+
+		// 현재날짜에서 연도 문자열 생성하기
+		Date date = new Date(System.currentTimeMillis());
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy");
+		String curYear = sd.format(date);
+		
+		String newStNum = this.makeStNum(curYear);
+		log.debug("현재 연도 {}, 생성된 학번 {}", curYear, newStNum);
+		return newStNum;
+		
+	}
+	@Override
+	public String makeStNum(String prefix) {
+		// TODO Auto-generated method stub
+		
+		String stNum = stDao.getMaxStNum();
+		/*
+		 *  prefix 만큼의 문자열을 건너뛰고 나머지 부분을 추출하기
+		 *  stNum = "20210010" 이고
+		 *  prefix = "2021" 이라면
+		 *  stSeq = stNum.substring(4) 이런 형식의 코드 생성되어
+		 *  stSeq에는 0010의 문자열만 남게 된다.
+		 */
+		String stSeq = stNum.substring(prefix.length());
+		log.debug("학번 seq : {}  ", stSeq);
+		Integer intSeq = Integer.valueOf(stSeq) + 1;
+		
+		String newStNum = String.format("%s%04d", prefix,intSeq);
+		log.debug("새로 생성된 학번 : {} ", newStNum);
+		
+		return newStNum;
+	}
+	@Override
+	public String insert(StudentVO stVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String update(StudentVO stVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
