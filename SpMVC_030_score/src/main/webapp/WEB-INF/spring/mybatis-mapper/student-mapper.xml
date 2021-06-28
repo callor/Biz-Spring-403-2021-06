@@ -8,7 +8,6 @@
 	<select id="selectAll" resultType="StudentVO">
 		SELECT * FROM tbl_student 
 		ORDER BY st_num DESC
-		LIMIT 10
 	</select>
 	<select id="findById" resultType="StudentVO">
 		SELECT * FROM tbl_student WHERE

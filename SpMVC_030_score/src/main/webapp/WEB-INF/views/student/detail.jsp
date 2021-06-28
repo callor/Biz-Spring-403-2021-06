@@ -57,7 +57,7 @@
 </c:forEach>
 	<div class="btn_box">
 		<button type="submit" class="save">저장</button>
-		<button type="button" class="list">리스트로</button>
+		<button type="button" class="student list">리스트로</button>
 		<button type="button" class="student home">처음으로</button>
 	</div>
 	</fieldset>
