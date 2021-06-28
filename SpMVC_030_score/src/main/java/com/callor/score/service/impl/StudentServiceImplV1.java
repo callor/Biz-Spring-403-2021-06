@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import com.callor.score.dao.ext.ScoreDao;
@@ -139,6 +140,24 @@ public class StudentServiceImplV1 implements StudentServcie{
 		return ret;
 		
 	}
+	
+	/*
+	 * Transaction의 조건
+	 * 다수의 CRUD는 한개의 업무 프로세스다
+	 * 다수의 CRUD가 모두 정상적으로 완료되어야만
+	 * 업무가 정상으로 수행된다.
+	 * 
+	 * 업무가 수행되는 동안 한곳이라도 CRUD에서
+	 * 오류가 발생하면 그중 CUD가 진행되는 동안
+	 * 문제가 발생하고 데이터에 오류가 저장될 것이다
+	 * 
+	 * 이런 상황을 방지하기 위하여
+	 * 업무 단위를 Transaction이라는 단위로 묶고
+	 * 
+	 * 모든 업무가 완료되면 데이터를 Commit(실제저장)하고
+	 * 그렇지 않으면 Rollback ALL(모두 취소)하는 처리
+	 */
+	@Transactional
 	@Override
 	public String scoreInput(ScoreInputVO scInputVO) {
 
@@ -152,6 +171,20 @@ public class StudentServiceImplV1 implements StudentServcie{
 					scInputVO.getScore().get(i)
 			);
 		}
+		
+		/*
+		 * @Transactional로 선언된 method에서
+		 * 모든 데이터를 insertOrUpdate를 수행한다음
+		 * 강제로 exception을 발생하였다
+		 * 
+		 * 그랬더니 transactionManager에 의해서
+		 * 모든 Insert Or Update가 Rollback 되어
+		 * 버렸다
+		 */
+		// 이유 불문하고 무조건 RuntimeException을
+		// 발생하라
+		// throw new RuntimeException();
+		
 		return null;
 	}
 }

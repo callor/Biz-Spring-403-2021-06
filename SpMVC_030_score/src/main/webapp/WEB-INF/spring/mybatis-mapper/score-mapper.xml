@@ -58,6 +58,47 @@
 			#{st_stnum},#{sc_sbcode},#{sc_score}
 		)
 	</insert>
+	<!-- 
+	데이터를 INSERT를 먼저 수행해라
+	만약 데이터가 이미 있으면 UPDATE를 수행하라
+	
+	PK로 설정된 칼럼에 값을 세팅한후 INSERT를 수행
+	sc_seq = 3 와 같은 방법으로 세팅을 하여 ISNERT 수행
+	만약 table의 sc_seq 칼럼에 이미 3이라는 값이 있으면
+	UNIQUE오류가 발생할 것이다.
+	내부적으로 DBMS(mysql)에서 exception이 발생할 것이다
+	
+	mysql INSERT문에 다음 명령절이 있으면
+	ON DUPLICATE  KEY UPDATE
+	
+	INSERT를 수행할때 Exception을 발생하는 대신
+	PK를 기준으로 Update를 수행하는 절차가 실행된다.
+	
+	TIP
+	PK를 기존의 칼럼지정으로 유지하면서
+	DUPLICATE .. UPDATE를 사용하기 위하여
+	INSERT에 필요한 칼럼중
+	학번과 과목코드를 묶어서 UNIQUE로 설정했다
+	
+	그랬더니
+	이미 값이 저장되어있는 학번과, 과목코드와
+	동일한 값을 INSERT하려고 하면
+	Exception이 발생하고
+	자동으로 DUPLICATE...UPDATE가 실행되더라
+	
+	ON DUPLICATE KEY UPDATE를 사용하여
+	insert OR update를 수행하기
+	어떤데이터를 추가하는데
+	이미 같은 PK를 갖는 데이터가 있으면
+	UPDATE를 하고, 없으면 추가하라
+	
+	기본조건
+	INSERT를 할때 반드시 PK값이 Value에 있어야 한다
+	
+	변형하여
+	INSERT를 할때 포함되는 칼럼들을 UNIQUE로 설정하면
+	같은 효과를 낼수 있다
+	 -->
 	<insert id="insertOrUpdate">
 		INSERT INTO tbl_score(sc_stnum, sc_sbcode, sc_score)
 		VALUES(#{st_num},#{sc_sbcode}, #{sc_score})

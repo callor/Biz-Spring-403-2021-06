@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	
+	<!-- 
+	appender : 
+	log를 표시할때 사용할 화면 format 설정하기
+	현재 버전의 logback 에서 appener를 설정하는 방법
+	appender > encoder > pattern
+	
+	구형 버전의 logback에서 사용하던 방법인데
+	현재도 사용가능은 하지만 가급적 사용하지말라는 방법
+	appener > layout > pattern
+	
+	encoder class
+	ch.qos.logback.classic.encoder.PatternLayoutEncoder
+	를 사용하는데 생략을 해도 상관없다
+	생략을 하면 기본값으로 class가 자동설정된다
+	-->
+	<appender name="STDOUT" 
+			class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>
+				%logger{10} %n[%-5level] %m%n
+			</pattern>		
+		</encoder>
+	</appender>
+	
+	<logger name="com.callor.score" additivity="false">
+		<appender-ref ref="STDOUT"/>
+		<level level="DEBUG" />
+	</logger>
+	
+	<logger name="org.springframework.transaction" additivity="false">
+		<appender-ref ref="STDOUT"/>
+		<level level="TRACE" />
+	</logger>
+	<logger name="org.springframework.jdbc" additivity="false">
+		<appender-ref ref="STDOUT"/>
+		<level level="TRACE" />
+	</logger>
+
+	
+	
+	<!-- 
+	특별히 조건이 부여되지 않은 경우에
+	logger를 표시하기
+	 -->
+	<root additivity="false">
+		<appender-ref ref="STDOUT"/>	
+		<level value="INFO"/>
+	</root>
+</configuration>
