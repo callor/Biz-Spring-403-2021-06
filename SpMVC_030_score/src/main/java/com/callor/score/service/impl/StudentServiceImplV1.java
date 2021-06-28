@@ -1,6 +1,7 @@
 package com.callor.score.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -164,6 +165,10 @@ public class StudentServiceImplV1 implements StudentServcie{
 		log.debug("Service RCV {}", scInputVO.toString());
 		
 		int size = scInputVO.getSubject().size();
+		String st_num = scInputVO.getSt_num();
+		
+		// 학생, 과목별 성적을 과목별로 개별 insert수행
+		/*
 		for(int i = 0 ; i < size ; i++) {
 			scDao.insertOrUpdate(
 					scInputVO.getSt_num(), 
@@ -171,7 +176,27 @@ public class StudentServiceImplV1 implements StudentServcie{
 					scInputVO.getScore().get(i)
 			);
 		}
+		*/
 		
+		// Dao에 보낼 데이터를 변경하기
+		
+		// 과목코드와 점수의 List를 담을 변수 선언
+		List<Map<String,String>> scoreMaps 
+			= new ArrayList<Map<String,String>>();
+		
+		for(int i = 0 ; i < size ; i++) {
+			
+			String subject = scInputVO.getSubject().get(i);
+			String score = scInputVO.getScore().get(i);
+			
+			Map<String, String> subjectScore 
+				= new HashMap<String,String>();
+			subjectScore.put("subject", subject);
+			subjectScore.put("score", score);
+			scoreMaps.add(subjectScore);
+		}
+		
+		scDao.insertOrUpdateForList(st_num, scoreMaps);
 		/*
 		 * @Transactional로 선언된 method에서
 		 * 모든 데이터를 insertOrUpdate를 수행한다음

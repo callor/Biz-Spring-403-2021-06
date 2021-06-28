@@ -106,6 +106,22 @@
 		sc_score = #{sc_score} 
 	</insert>
 	
+	<!-- 
+	List에 담긴 데이터를 받아서
+	Builk insert수행하기
+	 -->
+	<insert id="insertOrUpdateForList">
+		INSERT INTO tbl_score(sc_stnum,sc_sbcode, sc_score)
+		VALUES
+		<foreach collection="scoreMaps" 
+					item="map" separator=", ">
+			(#{st_num},#{map.subject},#{map.score})
+		</foreach>
+		AS NEW(st_num,subject,score)
+		ON DUPLICATE KEY UPDATE
+		sc_score = score
+	</insert>
+	
 	<update id="update" parameterType="ScoreVO">
 		UPDATE tbl_score SET
 			sc_stnum = #{sc_stnum},

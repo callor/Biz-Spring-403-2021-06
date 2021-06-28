@@ -20,7 +20,7 @@
 			class="ch.qos.logback.core.ConsoleAppender">
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<pattern>
-				%logger{10} %n[%-5level] %m%n
+				%logger{10} %n[%10.10level] %m  %n
 			</pattern>		
 		</encoder>
 	</appender>
