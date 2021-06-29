@@ -160,7 +160,7 @@ public class NaverServiceImplV1 implements NaverService<BookDTO> {
 			String discount = (String) item.get("discount");
 			String publisher = (String) item.get("publisher");
 			String isbn = (String) item.get("isbn");
-			String description = (String) item.get("scription");
+			String description = (String) item.get("description");
 			String pubdate = (String) item.get("pubdate");
 
 			// BookDTO에 담기
