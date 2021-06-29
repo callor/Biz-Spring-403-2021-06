@@ -22,7 +22,6 @@ body {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	overflow: auto;
 }
 
 header {
@@ -44,6 +43,7 @@ nav {
 	transision:1s;
 }
 
+/*
 nav.fixed {
 	position: fixed;
 	top: 0;
@@ -52,6 +52,7 @@ nav.fixed {
 	border-bottom-right-radius: 20px;
 	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
+*/
 
 nav ul {
 	list-style: none;
@@ -88,8 +89,9 @@ section#main_sec {
 	header와 nav를 화면에 고정하고
 	data가 보이는 부분만 scoll 하기 위하여
 	section#main_sec에 overflow 속성 부여하기
-	overflow: auto;
+	
 	*/
+	overflow: auto;
 }
 
 h2 {

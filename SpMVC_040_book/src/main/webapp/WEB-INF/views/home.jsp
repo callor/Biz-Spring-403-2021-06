@@ -19,11 +19,18 @@ p b {
 	color: blue;
 }
 
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
 nav#main_nav {
 	background-color: rgba(0,255,0,0.7);
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-size: 100% 100%;
 }
 
 nav#main_nav form {
@@ -43,10 +50,13 @@ nav#main_nav input {
 
 
 section.content_box {
+	flex:1;
 	border: 1px solid green;
 	padding: 12px 16px;
 	display: flex;
 	flex-wrap: wrap;
+		background-size: 100% 100%;
+	overflow: auto;
 }
 
 section.content_box div.content {
@@ -97,8 +107,8 @@ section.content_box div.content div {
 
 @media (min-width:1200px) {
 	section.content_box div.content {
-		width:20%;
-		margin:5px auto;;
+		width:18%;
+		margin:5px auto;
 	}
 }
 
