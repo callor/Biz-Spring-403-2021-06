@@ -71,8 +71,6 @@
 			return false;
 		}	
 		doc.querySelector("form#student_input").submit()
-
-		
 	}
 
 
@@ -80,7 +78,7 @@
 		let target = e.target
 		if(target.tagName === "BUTTON") {
 			/*
-			tag에 class를 지정할때 1개만 지정할수 있디만
+			tag에 class를 지정할때 1개만 지정할수 있지만
 			다수의 class를 지정하는 경우도 있다
 			이때는 if(taget.className === "className") 형식으로
 			class를 검사할 수 없다
