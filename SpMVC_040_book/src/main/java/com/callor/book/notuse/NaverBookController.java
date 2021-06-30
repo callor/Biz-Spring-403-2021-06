@@ -1,4 +1,4 @@
-package com.callor.book.controller.notuse;
+package com.callor.book.notuse;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

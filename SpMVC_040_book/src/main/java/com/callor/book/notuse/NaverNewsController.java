@@ -1,4 +1,4 @@
-package com.callor.book.controller.notuse;
+package com.callor.book.notuse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
