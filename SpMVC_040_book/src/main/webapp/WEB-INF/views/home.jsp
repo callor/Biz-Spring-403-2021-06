@@ -50,12 +50,25 @@ nav#main_nav input {
 
 
 section.content_box {
-	flex:1;
+	
 	border: 1px solid green;
 	padding: 12px 16px;
 	display: flex;
 	flex-wrap: wrap;
-		background-size: 100% 100%;
+	
+	/*
+	검색 결과가 표시되는 영역은 scroll 지정하고
+	상단의 검색창(nav)은 화면에 고정하기
+	
+	1. body 에
+		display : flex, 
+		flex-direction : column
+		height : 100vh
+	2. 검색결과창에
+		flex : 1
+		overflow: auto
+	*/
+	flex:1;
 	overflow: auto;
 }
 
