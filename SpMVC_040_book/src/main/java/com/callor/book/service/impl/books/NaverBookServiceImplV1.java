@@ -14,7 +14,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.callor.book.config.NaverSecret;
@@ -24,8 +23,8 @@ import com.callor.book.service.NaverBookService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service("naverServiceV1")
-public class NaverBookServiceImplV1 implements NaverBookService<BookDTO> {
+@Service("naverBookServiceV1")
+public class NaverBookServiceImplV1 implements NaverBookService {
 
 	/*
 	 * naver에 요청하기 BookURL + "?query=" + 검색문자열

@@ -23,8 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class HomeController {
 	
-	@Qualifier("naverServiceV2")
-	protected final NaverBookService<BookDTO> nBookService;
+	@Qualifier("naverBookServiceV2")
+	protected final NaverBookService nBookService;
 	
 	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String home() {
