@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.callor.book.model.BookDTO;
-import com.callor.book.service.NaverService;
+import com.callor.book.service.NaverBookService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +24,15 @@ import lombok.extern.slf4j.Slf4j;
 public class HomeController {
 	
 	@Qualifier("naverServiceV2")
-	protected final NaverService<BookDTO> nBookService;
+	protected final NaverBookService<BookDTO> nBookService;
 	
 	@RequestMapping(value="/",method=RequestMethod.GET)
+	public String home() {
+		return "redirect:/naver/BOOK";
+	}
+	
+	
+	@RequestMapping(value="/not",method=RequestMethod.GET)
 	public String home(
 			@RequestParam(name="category",
 			required = false,
@@ -56,7 +62,6 @@ public class HomeController {
 			List<BookDTO> bookList = nBookService.getNaverList(jsonString);
 			model.addAttribute("BOOKS",bookList);
 		}
-		
 		return "home";
 	}
 	
