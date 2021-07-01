@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class NaverBookController {
 
 	@Qualifier("naverServiceV1")
-	protected final NaverBookService<BookDTO> nBookService;
+	protected final NaverBookService nBookService;
 
 	@RequestMapping(value = { "/", "" }, method = RequestMethod.GET)
 	public String home(

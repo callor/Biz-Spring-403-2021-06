@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.book.dao.ext.BookDao">
+ 
+ 	<select id="selectAll" resultType="BookDTO">
+ 		SELECT * FROM tbl_books
+ 		ORDER BY isbn
+ 	</select>
+ 	<select id="findById" resultType="BookDTO">
+ 		SELECT * FROM tbl_books
+ 		WHERE isbn = #{isbn}
+ 	</select>
+ 	<insert id="insert" parameterType="BookDTO">
+		INSERT INTO tbl_books (
+						title,link,image,
+						author,price,discount,
+						publisher,isbn,description,
+						pubdate
+				) VALUES (
+			 			#{title},#{link},#{image},
+						#{author},#{price},#{discount},
+						#{publisher},#{isbn},#{description},
+						#{pubdate}
+				)
+ 	</insert>
+ 	<update id="update"></update>
+ 	<delete id="delete"></delete>
+ 
+ </mapper> 
