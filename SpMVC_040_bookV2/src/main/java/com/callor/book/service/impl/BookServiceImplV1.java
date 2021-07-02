@@ -40,4 +40,11 @@ public class BookServiceImplV1 implements BookService{
 		return 0;
 	}
 
+	@Override
+	public List<BookDTO> selectAll() {
+		
+		List<BookDTO> bookList = bookDao.selectAll();
+		return bookList;
+		
+	}
 }

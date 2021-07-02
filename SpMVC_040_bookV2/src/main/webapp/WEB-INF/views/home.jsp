@@ -136,6 +136,32 @@ a {
 a:hover {
 	color: green;
 }
+
+h2 {
+	width:95%;
+	margin:0 auto;
+	padding:1rem;
+}
+
+table {
+	width:95%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin:0 auto;
+}
+
+/* 전체적으로 th와 td의 위쪽만 선을 만들고 */
+th, td {
+	white-space: nowrap;
+	padding:16px 12px;
+	border-top: 1px solid #ddd;
+} 
+
+/* 가장 끝에 나타난 td에는 아래쪽에도 선을 만들기 */
+tr:last-child td {
+	border-bottom: 1px solid #ddd;
+}
+
 </style>
 </head>
 <body>
@@ -166,6 +192,11 @@ a:hover {
 		<%@ include file="/WEB-INF/views/book_list.jsp"%>
 		<%@ include file="/WEB-INF/views/movie_list.jsp"%>
 		<%@ include file="/WEB-INF/views/news_list.jsp"%>
+		
+		<c:if test="${not empty MY_BOOKS}">
+			<%@ include file="/WEB-INF/views/book/list_view.jsp" %>
+		</c:if>
+		
 	</section>
 </body>
 <script>
