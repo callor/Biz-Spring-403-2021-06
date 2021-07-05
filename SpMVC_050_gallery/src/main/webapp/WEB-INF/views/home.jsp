@@ -21,5 +21,16 @@
 	<button>전송</button>
 </form>
 
+<c:forEach items="${FILES}" var="FILE">
+	<a href="${rootPath}/files/${FILE}" target="_NEW">
+	<img 
+		src="${rootPath}/files/${FILE}" 
+		width="100px" height="100px"/>
+	</a>
+</c:forEach>
+
+<img src="${rootPath}/files/title.jpg" width="200px" />
+
+
 </body>
 </html>

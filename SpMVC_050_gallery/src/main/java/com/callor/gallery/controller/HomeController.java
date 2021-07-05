@@ -3,6 +3,7 @@ package com.callor.gallery.controller;
 import java.util.List;
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class HomeController {
 	
+	@Qualifier("fileServiceV2")
 	protected final FileService fileService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -30,11 +32,16 @@ public class HomeController {
 
 	@RequestMapping(value="/",method=RequestMethod.POST)
 	public String home(
-			MultipartHttpServletRequest m_file) throws Exception {
+			MultipartHttpServletRequest m_file,Model model) throws Exception {
 		
-		List<MultipartFile> files = m_file.getFiles("m_file");
-		fileService.fileUp(files.get(0));
+//		List<MultipartFile> files = m_file.getFiles("m_file");
+//		String fileName = fileService.fileUp(files.get(0));
+//		model.addAttribute("file",fileName);
+		
+		List<String> fileNames = fileService.filesUp(m_file);
+		model.addAttribute("FILES", fileNames);
 		return "home";
+	
 	}
 	
 	

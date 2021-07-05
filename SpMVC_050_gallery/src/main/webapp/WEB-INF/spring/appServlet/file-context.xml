@@ -11,7 +11,20 @@
 	file upload할때 파일을 저장할 폴더 
 	이 폴더는 img src="/files/파일" 형식으로 접근하기
 	-->
-	<mvc:resources location="/files/" mapping="/files/**" />
+	<mvc:resources mapping="/files/**"  
+			location="/files/, 
+					file:///c:/bizworks/files/, 
+					file:///Users/callor/Documents/workspace/files/ " />
+
+	<bean id="winPath" class="java.lang.String">
+		<constructor-arg value="c:/bizworks/files/"/>
+	</bean>
+	<bean id="macPath" class="java.lang.String">
+		<constructor-arg 
+				value="/Users/callor/Documents/workspace/files/"/>
+	</bean>
+
+
 
 
 </beans>
