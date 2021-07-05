@@ -1,10 +1,7 @@
 package com.callor.book.controller;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.List;
 
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,7 +50,7 @@ public class HomeController {
 	public String home1(
 			@RequestParam(name = "search",
 					required = false,
-					defaultValue = "") String search, Model model) throws MalformedURLException, IOException, ParseException {
+					defaultValue = "") String search, Model model) throws Exception {
 		
 		if(search != null && !search.equals("")) {
 			

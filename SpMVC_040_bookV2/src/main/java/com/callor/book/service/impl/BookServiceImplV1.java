@@ -25,7 +25,7 @@ public class BookServiceImplV1 implements BookService{
 	protected final BookDao bookDao;
 	
 	@Override
-	public int insert(String isbnUTF) throws IOException, ParseException {
+	public int insert(String isbnUTF) throws Exception {
 		
 		String isbn = URLDecoder.decode(isbnUTF,"UTF-8");
 		String[] isbns = isbn.split(" ");

@@ -76,7 +76,7 @@ public class NaverBookServiceImplV1 extends
 	 * 
 	 */
 	@Override
-	public List<BookDTO> getNaverList(String jsonString) throws ParseException {
+	public List<BookDTO> getNaverList(String jsonString) throws Exception {
 
 		log.debug("나는 ServiceV1 ~~~");
 
