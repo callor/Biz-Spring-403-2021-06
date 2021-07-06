@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.gallery.persistance.ext.GalleryDao">
+ 
+ 
+ 	<select id="selectAll"></select>
+ 	<select id="findById"></select>
+ 	<insert id="insert"></insert>
+ 	<update id="update"></update>
+ 	<delete id="delete"></delete>
+ 	
+ 	<update id="create_table">
+	 	CREATE TABLE IF NOT EXISTS tbl_gallery (
+			g_seq	BIGINT	AUTO_INCREMENT	PRIMARY KEY,
+			g_writer	VARCHAR(20)	NOT NULL,	
+			g_date	VARCHAR(10)	NOT NULL,	
+			g_time	VARCHAR(10)	NOT NULL,	
+			g_subject	VARCHAR(50)	NOT NULL,	
+			g_content	VARCHAR(1000)	NOT NULL,	
+			g_image	VARCHAR(125)		
+		)
+ 	</update>
+ 	
+ 	
+ 
+ </mapper> 
