@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.gallery.persistance.ext.FileDao">
+ 
+ 
+ 	<select id="selectAll"></select>
+ 	<select id="findById"></select>
+ 	<insert id="insert"></insert>
+ 	<update id="update"></update>
+ 	<delete id="delete"></delete>
+ 	
+ 	<update id="create_table">
+		CREATE TABLE IF NOT EXISTS tbl_files (
+			file_seq	BIGINT	AUTO_INCREMENT	PRIMARY KEY,
+			file_gseq	BIGINT	NOT NULL,	
+			file_original	VARCHAR(125)	NOT NULL,	
+			file_upname	VARCHAR(125)	NOT NULL	
+		)
+ 	</update>
+ </mapper> 
+
+

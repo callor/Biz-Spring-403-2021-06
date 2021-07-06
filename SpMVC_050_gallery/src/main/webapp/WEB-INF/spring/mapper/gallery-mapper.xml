@@ -5,10 +5,38 @@
   
  <mapper namespace="com.callor.gallery.persistance.ext.GalleryDao">
  
- 
- 	<select id="selectAll"></select>
- 	<select id="findById"></select>
- 	<insert id="insert"></insert>
+ 	<select id="selectAll" resultType="GalleryDTO">
+ 		SELECT * FROM tbl_gallery
+ 		ORDER BY g_date DESC, g_time DESC
+ 	</select>
+ 	<select id="findById" resultType="GalleryDTO">
+ 		SELECT * FROM tbl_gallery
+ 		WHERE g_seq = #{g_seq}
+ 	</select>
+ 	
+ 	<!-- 
+ 	insert, update tag에서는 selectKey라는 내부 tag를 사용할수 있다
+ 	insert, update가 실행되기 전, 후에 다른 SQL문을 실행하고자 할때
+ 	
+ 	insert를 수행한 후(order='AFTER')에 last_insert_id() 함수를 실행하여
+ 	GalleryDTO의 g_seq 칼럼에 값을 담아라
+ 	-->
+ 	<insert id="insert" parameterType="GalleryDTO">
+ 		INSERT INTO tbl_gallery (
+			g_writer,	g_date,		g_time,
+			g_subject,	g_content,	g_image
+		) VALUES (
+			#{g_writer},	#{g_date},		#{g_time},	
+			#{g_subject},	#{g_content}, 	#{g_image}
+ 		)
+ 		<selectKey keyProperty="g_seq"  
+ 					order="AFTER" 
+ 					resultType="Long">
+ 			SELECT LAST_INSERT_ID()
+ 		</selectKey>
+ 	</insert>
+ 	
+ 	
  	<update id="update"></update>
  	<delete id="delete"></delete>
  	
