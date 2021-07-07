@@ -10,7 +10,7 @@
  	<select id="findById"></select>
  	
  	<!-- 개별적으로 한개 데이터씩 Insert -->
- 	<insert id="insert">
+ 	<insert id="insert" parameterType="FileDTO">
  		INSERT INTO tbl_files (
  			file_gseq, 	file_original, 	file_upname
  		) VALUES (
@@ -27,21 +27,21 @@
  	이 문법을 사용하기 위하여 file_seq 데이터를 INSERT하도록 
  	선행 코드가 필요하다
  	-->
- 	<insert id="insertOrUdate">
+ 	<insert id="insertOrUpdate"  parameterType="FileDTO">
  		INSERT INTO tbl_files (
  			file_seq, file_gseq, 	file_original, 	file_upname
  		) VALUES (
 	 		#{file_seq}, #{file_gseq},	#{file_original},	#{file_upname}
  		)
  		ON DUPLICATE KEY UPDATE
- 			file_gseq = #{file_seq},
+ 			file_gseq = #{file_gseq},
  			file_orginal = #{file_original},
- 			file_update = #{file_upname}
+ 			file_upname = #{file_upname}
  	</insert>
 
  	
  	<!-- List<DTO>에 담긴 데이터를 한꺼번에 Insert -->
- 	<insert id="insertWithList">
+ 	<insert id="insertWithList"  parameterType="FileDTO">
  		INSERT INTO tbl_files (file_gseq, file_original,file_upname )
  		VALUES 
  		<foreach collection="filesList" item="file" separator=", " >
@@ -54,21 +54,23 @@
  	</insert>
 
 	<!-- List<DTO>에 담긴 데이터를 Insert Or Update 수행하기 -->
- 	<insert id="insertOrUpdateWithList">
- 		INSERT INTO tbl_files (file_gseq, file_original,file_upname )
+ 	<insert id="insertOrUpdateWithList"  parameterType="FileDTO">
+ 		INSERT INTO tbl_files 
+ 			(file_seq, file_gseq, file_original,file_upname )
  		VALUES 
  		<foreach collection="filesList" item="file" separator=", " >
  			(
+ 				#{file.file_seq},
 	 			#{file.file_gseq},	
 	 			#{file.file_original},	
 	 			#{file.file_upname}
  			)
  		</foreach>
- 		AS NEW( f_gseq, f_original, f_upname )
+ 		AS NEW(f_seq, f_gseq, f_original, f_upname )
  		ON DUPLICATE KEY UPDATE
- 		file_gseq = f_gseq, 
- 		file_original = f_original,
- 		file_upname = f_upname
+	 		file_gseq = f_gseq, 
+	 		file_original = f_original,
+	 		file_upname = f_upname
  	</insert>
 
 

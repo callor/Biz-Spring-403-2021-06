@@ -6,12 +6,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.gallery.model.GalleryDTO;
+import com.callor.gallery.model.GalleryFilesDTO;
 import com.callor.gallery.service.GalleryService;
 
 import lombok.RequiredArgsConstructor;
@@ -74,5 +76,29 @@ public class GalleryController {
 		
 		return "redirect:/gallery";
 	}
+	
+	@RequestMapping(value="/detail/{seq}",method=RequestMethod.GET)
+	public String detail(
+			@PathVariable("seq") String seq, Model model) {
+
+		Long g_seq = 0L;
+		try {
+			g_seq = Long.valueOf(seq);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			return "redirect:/gallery";
+		}
+		
+		List<GalleryFilesDTO> gfList 
+			= gaService.findByIdGalleryFiles(g_seq);
+		model.addAttribute("GFLIST",gfList);
+		model.addAttribute("BODY","GA-DETAIL");
+		return "home";
+		
+	}
+	
+	
+	
+	
 	
 }

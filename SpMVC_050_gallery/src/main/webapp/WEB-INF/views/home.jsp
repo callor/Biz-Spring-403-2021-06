@@ -20,6 +20,10 @@
 		<%@ include file="/WEB-INF/views/gallery/list.jsp" %>
 		<a href="${rootPath}/gallery/input">이미지 등록</a>
 	</c:when>
+	<c:when test="${BODY eq 'GA-DETAIL'}">
+		<%@ include file="/WEB-INF/views/gallery/detail.jsp" %>
+		<a href="${rootPath}/gallery">리스트로</a>
+	</c:when>
 	<c:otherwise>
 		<a href="${rootPath}/gallery/input">이미지 등록</a>
 	</c:otherwise>

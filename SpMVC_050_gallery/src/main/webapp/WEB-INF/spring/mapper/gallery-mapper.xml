@@ -2,82 +2,76 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="com.callor.gallery.persistance.ext.GalleryDao">
- 
- 	<select id="selectAll" resultType="GalleryDTO">
- 		SELECT * FROM tbl_gallery
- 		ORDER BY g_date DESC, g_time DESC
- 	</select>
- 	<select id="findById" resultType="GalleryDTO">
- 		SELECT * FROM tbl_gallery
- 		WHERE g_seq = #{g_seq}
- 	</select>
- 	
- 	<!-- 
- 	insert, update tag에서는 selectKey라는 내부 tag를 사용할수 있다
- 	insert, update가 실행되기 전, 후에 다른 SQL문을 실행하고자 할때
- 	
- 	insert를 수행한 후(order='AFTER')에 last_insert_id() 함수를 실행하여
- 	GalleryDTO의 g_seq 칼럼에 값을 담아라
- 	-->
- 	<insert id="insert" parameterType="GalleryDTO">
- 		INSERT INTO tbl_gallery (
-			g_writer,	g_date,		g_time,
-			g_subject,	g_content,	g_image
-		) VALUES (
-			#{g_writer},	#{g_date},		#{g_time},	
-			#{g_subject},	#{g_content}, 	#{g_image}
- 		)
- 		<selectKey keyProperty="g_seq"  
- 					order="AFTER" 
- 					resultType="Long">
- 			SELECT LAST_INSERT_ID()
- 		</selectKey>
- 	</insert>
- 	
- 	
- 	<update id="update"></update>
- 	<delete id="delete"></delete>
- 	
- 	<!-- 
- 	현재 프로젝트에서 프로젝트를 Run 하면
- 	자동으로 table을 검사하여
- 	table이 없으면 새로 생성하도록 작성
 
-	DDL 명령(CREATE, DROP, ALTER)을 수행하면
-	Transaction이 완전히 무시된다.
+<mapper namespace="com.callor.gallery.persistance.ext.GalleryDao">
+
+	<select id="selectAll" resultType="GalleryDTO">
+		SELECT * FROM tbl_gallery
+		ORDER BY g_date DESC, g_time DESC
+	</select>
+	<select id="findById" resultType="GalleryDTO">
+		SELECT * FROM tbl_gallery
+		WHERE g_seq = #{g_seq}
+	</select>
+
+	<select id="findByIdGalleryFiles" resultType="GalleryFilesDTO">
+		SELECT
+			G.g_seq AS g_seq,
+			G.g_writer AS g_writer,
+			G.g_date AS g_date, G.g_time AS g_time,
+			G.g_subject AS g_subject,
+			G.g_content AS g_content,
+			G.g_image AS g_image,
 	
-	Transaction
-	한가지의 일련의 작업(JOB)이 진행되는 과정에서
-	다수의(2개이상의) TABLE에 대하여
-	SQL(DML, CREATE:INSERT, UPDATE, DELETE) 문이 실행되고
-	Table에 저장된 데이터의 변화가 생길때
-	JOB 모두 정상적으로 수행되었을 때는 COMMIT을 하여
-	데이터 변화를 완성하고
-	중간에 사소한 exception이라도 발생하면 모든 작업을 ROLLBACK하여
-	데이터 베이스의 무결성을 보장하는 한가지의 규칙이며 코드 작성 원칙
-	
-	Transaction이 진행되는 도중에 다른 task에서
-	DDL이 실행되거나, TCL(Commit, Rollback)이 실행되면
-	현재 Task에서 실행되는 Transaction이 무력화 되는 현상이 발생한다
-	
-	mybatis에서는 공식적으로 mapper와 Dao를 활용하여 DDL명령을 사용하는것을
-	밝히지 않는다
- 	
- 	-->
- 	<update id="create_table">
-	 	CREATE TABLE IF NOT EXISTS tbl_gallery (
-			g_seq	BIGINT	AUTO_INCREMENT	PRIMARY KEY,
-			g_writer VARCHAR(125) NOT NULL,	
-			g_date	VARCHAR(10)	NOT NULL,	
-			g_time	VARCHAR(10)	NOT NULL,	
-			g_subject	VARCHAR(50)	NOT NULL,	
-			g_content	VARCHAR(1000)	NOT NULL,	
-			g_image	VARCHAR(256)		
+			F.file_seq AS f_seq,
+			F.file_original f_original,
+			F.file_upname AS f_upname
+		FROM tbl_gallery G, tbl_files F
+		WHERE G.g_seq = #{g_seq} 
+				AND G.g_seq = F.file_gseq
+	</select>
+
+	<!-- insert, update tag에서는 selectKey라는 내부 tag를 사용할수 있다 insert, update가 실행되기 
+		전, 후에 다른 SQL문을 실행하고자 할때 insert를 수행한 후(order='AFTER')에 last_insert_id() 함수를 
+		실행하여 GalleryDTO의 g_seq 칼럼에 값을 담아라 -->
+	<insert id="insert" parameterType="GalleryDTO">
+		INSERT INTO tbl_gallery (
+		g_writer, g_date, g_time,
+		g_subject, g_content, g_image
+		) VALUES (
+		#{g_writer}, #{g_date}, #{g_time},
+		#{g_subject}, #{g_content}, #{g_image}
 		)
- 	</update>
- 	
- 	
- 
- </mapper> 
+		<selectKey keyProperty="g_seq" order="AFTER"
+			resultType="Long">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+
+	<update id="update"></update>
+	<delete id="delete"></delete>
+
+	<!-- 현재 프로젝트에서 프로젝트를 Run 하면 자동으로 table을 검사하여 table이 없으면 새로 생성하도록 작성 DDL 
+		명령(CREATE, DROP, ALTER)을 수행하면 Transaction이 완전히 무시된다. Transaction 한가지의 일련의 
+		작업(JOB)이 진행되는 과정에서 다수의(2개이상의) TABLE에 대하여 SQL(DML, CREATE:INSERT, UPDATE, 
+		DELETE) 문이 실행되고 Table에 저장된 데이터의 변화가 생길때 JOB 모두 정상적으로 수행되었을 때는 COMMIT을 하여 
+		데이터 변화를 완성하고 중간에 사소한 exception이라도 발생하면 모든 작업을 ROLLBACK하여 데이터 베이스의 무결성을 보장하는 
+		한가지의 규칙이며 코드 작성 원칙 Transaction이 진행되는 도중에 다른 task에서 DDL이 실행되거나, TCL(Commit, 
+		Rollback)이 실행되면 현재 Task에서 실행되는 Transaction이 무력화 되는 현상이 발생한다 mybatis에서는 공식적으로 
+		mapper와 Dao를 활용하여 DDL명령을 사용하는것을 밝히지 않는다 -->
+	<update id="create_table">
+		CREATE TABLE IF NOT EXISTS tbl_gallery (
+		g_seq BIGINT AUTO_INCREMENT PRIMARY KEY,
+		g_writer VARCHAR(125) NOT NULL,
+		g_date VARCHAR(10) NOT NULL,
+		g_time VARCHAR(10) NOT NULL,
+		g_subject VARCHAR(50) NOT NULL,
+		g_content VARCHAR(1000) NOT NULL,
+		g_image VARCHAR(256)
+		)
+	</update>
+
+
+
+</mapper> 

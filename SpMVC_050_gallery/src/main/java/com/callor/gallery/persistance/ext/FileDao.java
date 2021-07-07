@@ -9,7 +9,7 @@ import com.callor.gallery.persistance.GenericDao;
 
 public interface FileDao extends GenericDao<FileDTO, Long>{
 	
-	public int insertOrUdate(FileDTO fileDto);
+	public int insertOrUpdate(FileDTO fileDto);
 	public int insertWithList(
 			@Param("filesList") List<FileDTO> filesList);
 	
