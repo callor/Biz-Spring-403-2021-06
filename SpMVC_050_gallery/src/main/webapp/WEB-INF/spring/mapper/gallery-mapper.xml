@@ -40,15 +40,41 @@
  	<update id="update"></update>
  	<delete id="delete"></delete>
  	
+ 	<!-- 
+ 	현재 프로젝트에서 프로젝트를 Run 하면
+ 	자동으로 table을 검사하여
+ 	table이 없으면 새로 생성하도록 작성
+
+	DDL 명령(CREATE, DROP, ALTER)을 수행하면
+	Transaction이 완전히 무시된다.
+	
+	Transaction
+	한가지의 일련의 작업(JOB)이 진행되는 과정에서
+	다수의(2개이상의) TABLE에 대하여
+	SQL(DML, CREATE:INSERT, UPDATE, DELETE) 문이 실행되고
+	Table에 저장된 데이터의 변화가 생길때
+	JOB 모두 정상적으로 수행되었을 때는 COMMIT을 하여
+	데이터 변화를 완성하고
+	중간에 사소한 exception이라도 발생하면 모든 작업을 ROLLBACK하여
+	데이터 베이스의 무결성을 보장하는 한가지의 규칙이며 코드 작성 원칙
+	
+	Transaction이 진행되는 도중에 다른 task에서
+	DDL이 실행되거나, TCL(Commit, Rollback)이 실행되면
+	현재 Task에서 실행되는 Transaction이 무력화 되는 현상이 발생한다
+	
+	mybatis에서는 공식적으로 mapper와 Dao를 활용하여 DDL명령을 사용하는것을
+	밝히지 않는다
+ 	
+ 	-->
  	<update id="create_table">
 	 	CREATE TABLE IF NOT EXISTS tbl_gallery (
 			g_seq	BIGINT	AUTO_INCREMENT	PRIMARY KEY,
-			g_writer	VARCHAR(20)	NOT NULL,	
+			g_writer VARCHAR(125) NOT NULL,	
 			g_date	VARCHAR(10)	NOT NULL,	
 			g_time	VARCHAR(10)	NOT NULL,	
 			g_subject	VARCHAR(50)	NOT NULL,	
 			g_content	VARCHAR(1000)	NOT NULL,	
-			g_image	VARCHAR(125)		
+			g_image	VARCHAR(256)		
 		)
  	</update>
  	

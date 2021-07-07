@@ -8,7 +8,70 @@
  
  	<select id="selectAll"></select>
  	<select id="findById"></select>
- 	<insert id="insert"></insert>
+ 	
+ 	<!-- 개별적으로 한개 데이터씩 Insert -->
+ 	<insert id="insert">
+ 		INSERT INTO tbl_files (
+ 			file_gseq, 	file_original, 	file_upname
+ 		) VALUES (
+	 		#{file_gseq},	#{file_original},	#{file_upname}
+ 		)
+ 	</insert>
+ 	
+ 	<!-- 
+ 	f_seq 값이 있는(이미 저장된 데이터) 데이터 추가하려고 할때
+ 	PK 값이 중복되어 내부에서 UNIQUE Exception이 발생하는데
+ 	이 Exception을 catch하여 Update로 전환하는 MySQL 고유 SQL 명령을
+ 	사용하여 Insert Or Update를 수행하는 방법
+ 	
+ 	이 문법을 사용하기 위하여 file_seq 데이터를 INSERT하도록 
+ 	선행 코드가 필요하다
+ 	-->
+ 	<insert id="insertOrUdate">
+ 		INSERT INTO tbl_files (
+ 			file_seq, file_gseq, 	file_original, 	file_upname
+ 		) VALUES (
+	 		#{file_seq}, #{file_gseq},	#{file_original},	#{file_upname}
+ 		)
+ 		ON DUPLICATE KEY UPDATE
+ 			file_gseq = #{file_seq},
+ 			file_orginal = #{file_original},
+ 			file_update = #{file_upname}
+ 	</insert>
+
+ 	
+ 	<!-- List<DTO>에 담긴 데이터를 한꺼번에 Insert -->
+ 	<insert id="insertWithList">
+ 		INSERT INTO tbl_files (file_gseq, file_original,file_upname )
+ 		VALUES 
+ 		<foreach collection="filesList" item="file" separator=", " >
+ 			(
+	 			#{file.file_gseq},	
+	 			#{file.file_original},	
+	 			#{file.file_upname}
+ 			)
+ 		</foreach>
+ 	</insert>
+
+	<!-- List<DTO>에 담긴 데이터를 Insert Or Update 수행하기 -->
+ 	<insert id="insertOrUpdateWithList">
+ 		INSERT INTO tbl_files (file_gseq, file_original,file_upname )
+ 		VALUES 
+ 		<foreach collection="filesList" item="file" separator=", " >
+ 			(
+	 			#{file.file_gseq},	
+	 			#{file.file_original},	
+	 			#{file.file_upname}
+ 			)
+ 		</foreach>
+ 		AS NEW( f_gseq, f_original, f_upname )
+ 		ON DUPLICATE KEY UPDATE
+ 		file_gseq = f_gseq, 
+ 		file_original = f_original,
+ 		file_upname = f_upname
+ 	</insert>
+
+
  	<update id="update"></update>
  	<delete id="delete"></delete>
  	
@@ -16,8 +79,8 @@
 		CREATE TABLE IF NOT EXISTS tbl_files (
 			file_seq	BIGINT	AUTO_INCREMENT	PRIMARY KEY,
 			file_gseq	BIGINT	NOT NULL,	
-			file_original	VARCHAR(125)	NOT NULL,	
-			file_upname	VARCHAR(125)	NOT NULL	
+			file_original	VARCHAR(256)	NOT NULL,	
+			file_upname	VARCHAR(256)	NOT NULL	
 		)
  	</update>
  </mapper> 

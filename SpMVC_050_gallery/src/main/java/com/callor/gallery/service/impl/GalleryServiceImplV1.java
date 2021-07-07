@@ -38,7 +38,6 @@ public class GalleryServiceImplV1 implements GalleryService {
 	 * Spring framework는 변수를 초기화, 
 	 * 		method를 실행하여 또 변수 초기화
 	 * 		이미 생성되어 준비된 객체에 주입등을 수행한다
-	 * 
 	 */
 	@Autowired
 	public void create_table(GalleryDao gDao) {
@@ -54,7 +53,9 @@ public class GalleryServiceImplV1 implements GalleryService {
 	}
 
 	@Override
-	public void input(GalleryDTO gaDTO, MultipartFile one_file, MultipartHttpServletRequest m_file) throws Exception {
+	public void input(GalleryDTO gaDTO, 
+				MultipartFile one_file, 
+				MultipartHttpServletRequest m_file) throws Exception {
 		// TODO Auto-generated method stub
 		
 		// 대표이미지가 업로드 되면...
@@ -84,19 +85,23 @@ public class GalleryServiceImplV1 implements GalleryService {
 		// 원래 파일이름과 UUID 가 첨가된 파일이름을 추출하여
 		// FileDTO에 담고
 		// 다시 List에 담아 놓는다
-		for(MultipartFile file : m_file.getFiles("m_file")) {
+		
+		List<MultipartFile> mFiles = m_file.getFiles("m_file");
+		for(MultipartFile file : mFiles) {
 			
 			String fileOriginName = file.getOriginalFilename();
 			String fileUUName = fService.fileUp(file);
 			
 			FileDTO fDto = FileDTO.builder()
-							.file_gseq(g_seq)
+							.file_gseq(g_seq) // 갤러리 데이터의 PK값
 							.file_original(fileOriginName)
 							.file_upname(fileUUName)
 							.build();
 			files.add(fDto);
 		}
 		log.debug("이미지 들 {}", files.toString());
+		
+		fDao.insertOrUpdateWithList(files);
 		
 	}
 
