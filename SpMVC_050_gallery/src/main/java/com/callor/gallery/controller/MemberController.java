@@ -1,5 +1,7 @@
 package com.callor.gallery.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,23 +60,45 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public String login(MemberVO memberVO, Model model) {
+	public String login(MemberVO memberVO, 
+				Model model, 
+				HttpSession session) {
 		
 		memberVO = memService.login(memberVO, model);
 		if(memberVO == null) {
 			model.addAttribute("BODY","LOGIN");
 			return "home";			
 		} else {
-
+			// 사용자 ID 정상, 비밀번호 확인 정상
+			// HttpSession에 사용자 정보가 담긴 memberVO를
+			// 속성으로 세팅한다
+			session.setAttribute("MEMBER",memberVO);
 			
+			/*
+			 * HttpSession에 속성으로 setting된 값은
+			 * 어떠한 type이라도 상관없다
+			 * 하지만 HttpSession에 담긴 속성은
+			 * 임의로 삭제하거나, 초기화하거나
+			 * 서버가 멈추거나, 일정 조건이 성립되지 않으면
+			 * 서버 메모리에 영구히 남아있다
+			 * 
+			 * 1. 가급적 작은 크기의 데이터만 담아라
+			 * 2. 필요없으면 반드시 소멸시켜라
+			 * 3. 자동 소멸되는 조건을 잘 지정하라
+			 * 
+			 */
+			// session.setAttribute("USERID",memberVO.getM_userid());
 			return "redirect:/";
 		}
-
 	}
-
 	
 	
+	@RequestMapping(value="/logout",method=RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.removeAttribute("MEMBER");
+		return "redirect:/";
 	
+	}
 }
 
 

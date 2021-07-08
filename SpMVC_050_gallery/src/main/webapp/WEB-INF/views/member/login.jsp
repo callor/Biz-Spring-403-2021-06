@@ -16,7 +16,7 @@
 
 
 <form method="POST" id="login_form">
-	<div class="msg login error view">
+	<div class="msg login error">
 	</div>
 	<div>
 		<label>사용자 ID</label>
