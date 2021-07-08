@@ -3,25 +3,38 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
- <mapper namespace="com.callor.gallery.persistance.ext.FileDao">
+ <mapper namespace="com.callor.gallery.persistance.ext.MemberDao">
  
  
- 	<select id="selectAll">
+ 	<select id="selectAll" resultType="MemberVO">
  		SELECT * FROM tbl_member
  	</select>
  	<select id="findById"></select>
  	
- 	<insert id="insert" parameterType="FileDTO">
+ 	<insert id="insert">
  	</insert>
  	
- 	<insert id="insertOrUpdate"  parameterType="FileDTO">
+ 	<insert id="insertOrUpdate" parameterType="MemberVO">
+ 		INSERT INTO tbl_member (
+ 			m_userid, m_password, m_nick, m_tel, m_level
+ 		)
+ 		VALUES(
+ 			#{m_userid}, #{m_password}, #{m_nick},
+ 			#{m_tel}, #{m_level} 
+ 		)
+ 		ON DUPLICATE KEY UPDATE
+	 		m_userid = m_userid,
+	 		m_password = m_password,
+	 		m_nick = m_nick,
+	 		m_tel = m_tel,
+	 		m_level = m_level
  	</insert>
 
  	<update id="update"></update>
  	<delete id="delete"></delete>
  	
  	<update id="create_table">
- 		CREATE TABLE IF EXISTS tbl_member (
+ 		CREATE TABLE IF NOT EXISTS tbl_member (
  			m_userid VARCHAR(125) PRIMARY KEY,
  			m_password VARCHAR(255) NOT NULL,
  			m_nick VARCHAR(50) NOT NULL,

@@ -28,6 +28,9 @@ public class MemberController {
 	@RequestMapping(value="/join",method=RequestMethod.POST)
 	public String join(MemberVO memberVO, Model model) {
 		log.debug("회원가입 정보 {}", memberVO.toString());
+		
+		memberVO = memService.join(memberVO);
+		
 		model.addAttribute("BODY","JOIN");
 		return "home";
 	}

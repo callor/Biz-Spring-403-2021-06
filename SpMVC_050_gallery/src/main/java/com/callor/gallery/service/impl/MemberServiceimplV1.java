@@ -1,6 +1,7 @@
 package com.callor.gallery.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,22 @@ public class MemberServiceimplV1 implements MemberService {
 	@Override
 	public MemberVO join(MemberVO memberVO) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		List<MemberVO> members = memDao.selectAll();
+		log.debug("Members {}",members.toString());
+		
+		// 아직 member table에 데이터가 하나도 없는 상태
+		// 최초로 가입신청이 된 상태
+		// 최초로 가입되는 member는 ADMIN
+		// ADMIN은 level이 0 이다
+		if(members == null || members.size() < 1) {
+			memberVO.setM_level(0);
+		} else {
+			memberVO.setM_level(9);
+		}
+		memDao.insertOrUpdate(memberVO);
+		return memberVO;
+	
 	}
 
 	@Override
