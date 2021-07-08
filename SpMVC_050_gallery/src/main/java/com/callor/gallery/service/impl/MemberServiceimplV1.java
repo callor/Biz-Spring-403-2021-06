@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.callor.gallery.model.MemberVO;
 import com.callor.gallery.persistance.ext.MemberDao;
@@ -70,8 +71,45 @@ public class MemberServiceimplV1 implements MemberService {
 
 	@Override
 	public MemberVO findById(String m_userid) {
+
+		MemberVO memberVO = memDao.findById(m_userid.trim());
+		
+		if(memberVO == null) {
+			// 가입되지 않은 사용자 ID
+			log.debug("가입되지 않은 사용자 {}", m_userid );
+		} else {
+			log.debug("조회된 사용자 정보 : {}", memberVO.toString());	
+		}
+		return memberVO;
+	}
+
+
+	@Override
+	public MemberVO login(MemberVO memberVO, Model model) {
 		// TODO Auto-generated method stub
+		
+		// 1. memberVO에서 m_userid를 getter 한 후
+		// 2. findById() 를 통해 id 조회
+		// 3. 만약 결과가 null 이면 : 가입되지 않은 ID
+		// 4. 결과가 null이 아니면
+		// 5. 비밀번호 일치 조회
+		// 6. 일치하지 않으면 : 비밀번호 오류 로그인 거부
+		// 7. 일치하면 : 로그인 처리
+		
+		MemberVO findVO = memDao.findById(memberVO.getM_userid());
+		if(findVO == null) {
+			model.addAttribute("LOGIN_FAIL","NOT_USERID");
+			return null;
+		}
+		
+		// 비밀번호 비교
+		if(findVO.getM_password().equals(memberVO.getM_password())) {
+			return findVO;
+		}
+		
+		model.addAttribute("LOGIN_FAIL","NEQ_PASS");
 		return null;
+	
 	}
 
 }

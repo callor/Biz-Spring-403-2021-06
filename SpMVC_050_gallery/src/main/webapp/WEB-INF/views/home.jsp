@@ -37,6 +37,11 @@
 		<%@ include file="/WEB-INF/views/member/join.jsp" %>
 	</c:when>
 
+	<c:when test="${BODY eq 'LOGIN'}">
+		<%@ include file="/WEB-INF/views/member/login.jsp" %>
+	</c:when>
+
+
 	<c:otherwise>
 		<a href="${rootPath}/gallery/input">이미지 등록</a>
 	</c:otherwise>

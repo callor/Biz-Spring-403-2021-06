@@ -9,7 +9,10 @@
  	<select id="selectAll" resultType="MemberVO">
  		SELECT * FROM tbl_member
  	</select>
- 	<select id="findById"></select>
+ 	<select id="findById" resultType="MemberVO">
+ 		SELECT * FROM tbl_member
+ 		WHERE m_userid = #{m_userid}
+ 	</select>
  	
  	<insert id="insert">
  	</insert>
