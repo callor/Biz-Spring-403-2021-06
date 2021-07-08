@@ -24,6 +24,11 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class NaverController {
 	
+	@RequestMapping(value="/book/list")
+	public List<NewsDTO> book(String search) throws Exception {
+		return nService.naverGetList(search);
+	}
+	
 	@Qualifier(NaverQualifier.NAVER_MAIN_SERVICE_V1)
 	protected final NaverMainService nService;
 	
