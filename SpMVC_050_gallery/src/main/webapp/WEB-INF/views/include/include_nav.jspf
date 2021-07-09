@@ -2,6 +2,56 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />    
+<style>
+
+/* nav tag 에 바탕색과 글자색 지정 */
+nav {
+	background-color: black;
+	color:white;
+}
+
+/* ul tag에 list-style(머릿표)을 none, display를 flex */
+/* 가로방향으로 nav 설정 */
+nav ul {
+	list-style: none;
+	display: flex;
+}
+
+/* li 에 padding을 주어서 적당히 간격, box 크기를 설정 */
+/* 마우스 커서를 손가락 모양 */
+nav li {
+	padding:16px;
+	cursor: pointer;
+	
+	position: relative;
+	
+}
+
+/* 특정한 nav 를 오른쪽으로 보낼때 */
+nav li#login, nav li#logout {
+	margin-left: auto;
+}
+
+
+nav li:after {
+	content: '' ;
+	position: absolute;
+	left:0;
+	bottom:0;
+	height: 0;
+	width: 0;
+	transition: all 0.7s;
+}
+
+nav li:hover:after {
+	border-bottom: 5px solid yellow;
+	width: 100%;
+
+}
+
+
+
+</style>
 <nav id="main_nav">
 	<ul>
 		<li id="home">HOME</li>

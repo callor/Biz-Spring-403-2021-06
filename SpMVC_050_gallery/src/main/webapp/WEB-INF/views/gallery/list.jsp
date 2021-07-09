@@ -27,7 +27,7 @@
 	<div class="ga_box">
 		<div>
 			<c:if test="${empty GALLERY.g_image}">
-				<img src="${rootPath}/files/noImage.png" width="100%">
+				<img src="${rootPath}/files/noImage.png" width="100px">
 			</c:if>
 			<c:if test="${not empty GALLERY.g_image}">
 				<img src="${rootPath}/files/${GALLERY.g_image}" width="100px">

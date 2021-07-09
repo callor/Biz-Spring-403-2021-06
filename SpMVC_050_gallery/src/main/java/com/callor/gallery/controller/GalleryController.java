@@ -74,7 +74,12 @@ public class GalleryController {
 	
 	
 	@RequestMapping(value="/input",method=RequestMethod.GET)
-	public String input(Model model) {
+	public String input(Model model,HttpSession session) {
+		
+		MemberVO mVO = (MemberVO) session.getAttribute("MEMBER");
+		if(mVO == null) {
+			return "redirect:/member/login";
+		}
 		
 		Date date = new Date(System.currentTimeMillis());
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
