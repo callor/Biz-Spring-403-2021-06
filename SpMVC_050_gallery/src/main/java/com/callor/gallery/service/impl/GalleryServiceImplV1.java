@@ -21,7 +21,6 @@ import com.callor.gallery.service.GalleryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-
 @RequiredArgsConstructor
 @Slf4j
 @Service("galleryServiceV1")

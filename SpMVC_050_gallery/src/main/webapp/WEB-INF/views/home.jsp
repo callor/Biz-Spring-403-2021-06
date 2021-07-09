@@ -23,6 +23,10 @@
 	<c:when test="${BODY eq 'GA-DETAIL'}">
 		<%@ include file="/WEB-INF/views/gallery/detail.jsp" %>
 	</c:when>
+	
+	<c:when test="${BODY eq 'GA-DETAIL-V2'}">
+		<%@ include file="/WEB-INF/views/gallery/detail2.jsp" %>
+	</c:when>
 
 	<c:when test="${BODY eq 'JOIN'}">
 		<%@ include file="/WEB-INF/views/member/join.jsp" %>

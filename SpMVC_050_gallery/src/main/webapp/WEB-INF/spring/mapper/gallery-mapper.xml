@@ -28,10 +28,11 @@
 		<result column="g_time" property="g_time"/>
 		<result column="g_content" property="g_content"/>
 		<result column="g_image" property="g_image"/>
+		
 		<collection property="fileList" ofType="FileDTO">
 			<id property="file_seq" column="f_seq"/>
 			<result property="file_original" column="f_original"/>
-			<result property="file_update" column="f_update"/>
+			<result property="file_upname" column="f_upname"/>
 		</collection>
 	</resultMap>
 

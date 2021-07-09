@@ -30,7 +30,7 @@
 		</div>
 		<div>
 			<h3>
-				<a href="${rootPath}/gallery/detail/${GALLERY.g_seq}">
+				<a href="${rootPath}/gallery/detail2/${GALLERY.g_seq}">
 					${GALLERY.g_subject}
 				</a>
 			</h3>

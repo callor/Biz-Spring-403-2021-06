@@ -28,10 +28,14 @@ public class GalleryDTO {
 	private String g_subject; // 제목
 	private String g_content; // 내용
 	private String g_image; // 사진갤러리의 대표 이미지
-
 	
 	// Gallery와 연관된 FileList를 담을 List type의 변수를 추가
+	// mapper에서 Collection으로 채울 데이터
 	List<FileDTO> fileList;
-	
 
 }
+
+
+
+
+
