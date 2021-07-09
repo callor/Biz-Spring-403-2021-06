@@ -16,6 +16,8 @@ public interface GalleryService {
 			MultipartHttpServletRequest m_file) throws Exception;
 	
 	public List<GalleryDTO> selectAll() throws Exception;
+	
 	public List<GalleryFilesDTO> findByIdGalleryFiles(Long g_seq);
+	public GalleryDTO findByIdGellery(Long g_seq);
 
 }

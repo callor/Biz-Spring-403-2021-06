@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(value="/gallery")
 public class GalleryController {
 	
+	@Qualifier("galleryServiceV2")
 	protected final GalleryService gaService;
 	
 	/*
@@ -125,6 +129,25 @@ public class GalleryController {
 		
 	}
 	
+	@RequestMapping(value="/detail2/{seq}",method=RequestMethod.GET)
+	public String detail(
+			@PathVariable("seq") String seq, Model model, HttpSession session) {
+		
+		Long g_seq = 0L;
+		try {
+			g_seq = Long.valueOf(seq);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.debug("갤러리 ID 값 오류");
+			return "redirect:/";
+		}
+
+		GalleryDTO galleryDTO = gaService.findByIdGellery(g_seq);
+		model.addAttribute("GALLERY",galleryDTO);
+		model.addAttribute("BODY","GA-DETAIL-V2");
+		return "home";
+		
+	}
 	
 	
 	
