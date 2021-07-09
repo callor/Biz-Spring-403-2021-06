@@ -137,5 +137,11 @@ public class GalleryServiceImplV1 implements GalleryService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int delete(Long g_seq) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

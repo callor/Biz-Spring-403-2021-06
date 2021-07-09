@@ -36,7 +36,7 @@
 		</collection>
 	</resultMap>
 
-	<select id="findByIdGalleryFilesResultMap" resultMap="galleryDTOResultMap" >
+	<sql id="selectGalleryAndFiles">
 		SELECT
 			G.g_seq AS g_seq,
 			G.g_writer AS g_writer,
@@ -44,7 +44,7 @@
 			G.g_subject AS g_subject,
 			G.g_content AS g_content,
 			G.g_image AS g_image,
-	
+			
 			F.file_seq AS f_seq,
 			F.file_original f_original,
 			F.file_upname AS f_upname
@@ -52,26 +52,19 @@
 			LEFT JOIN tbl_files F
 				ON G.g_seq = F.file_gseq
 		WHERE G.g_seq = #{g_seq} 
+	</sql>
+
+
+	<select id="findByIdGalleryFilesResultMap" resultMap="galleryDTOResultMap" >
+		<include refid="selectGalleryAndFiles">
+			<property name="g_seq" value="#{g_seq}"/>
+		</include>
 	</select>
 
-
-
 	<select id="findByIdGalleryFiles" resultType="GalleryFilesDTO">
-		SELECT
-			G.g_seq AS g_seq,
-			G.g_writer AS g_writer,
-			G.g_date AS g_date, G.g_time AS g_time,
-			G.g_subject AS g_subject,
-			G.g_content AS g_content,
-			G.g_image AS g_image,
-	
-			F.file_seq AS f_seq,
-			F.file_original f_original,
-			F.file_upname AS f_upname
-		FROM tbl_gallery G
-			LEFT JOIN tbl_files F
-				ON G.g_seq = F.file_gseq
-		WHERE G.g_seq = #{g_seq} 
+		<include refid="selectGalleryAndFiles">
+			<property name="g_seq" value="#{g_seq}"/>
+		</include>
 	</select>
 
 	<!-- insert, update tag에서는 selectKey라는 내부 tag를 사용할수 있다 insert, update가 실행되기 
