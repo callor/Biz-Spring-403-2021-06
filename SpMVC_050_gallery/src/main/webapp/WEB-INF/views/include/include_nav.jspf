@@ -32,7 +32,6 @@ nav li#login, nav li#logout {
 	margin-left: auto;
 }
 
-
 nav li:after {
 	content: '' ;
 	position: absolute;
