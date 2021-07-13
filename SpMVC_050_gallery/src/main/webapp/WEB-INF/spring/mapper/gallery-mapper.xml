@@ -86,7 +86,12 @@
 
 
 	<update id="update"></update>
-	<delete id="delete"></delete>
+	<delete id="delete">
+	
+		DELETE FROM tbl_gallery 
+		WHERE g_seq = #{g_seq}
+	
+	</delete>
 
 	<!-- 현재 프로젝트에서 프로젝트를 Run 하면 자동으로 table을 검사하여 table이 없으면 새로 생성하도록 작성 DDL 
 		명령(CREATE, DROP, ALTER)을 수행하면 Transaction이 완전히 무시된다. Transaction 한가지의 일련의 
