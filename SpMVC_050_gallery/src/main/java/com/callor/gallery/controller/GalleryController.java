@@ -189,7 +189,7 @@ public class GalleryController {
 	@RequestMapping(value="/file/delete/{seq}",method=RequestMethod.GET)
 	public String file_delete( 
 			@PathVariable("seq") String seq) {
-		return "NO";
+		return "OK";
 	}
 	
 }

@@ -37,7 +37,7 @@
 	}
 	
 	div.gallery_file:after {
-		content: "삭제";
+		content: "";
 		position: absolute;
 		left:0;
 		top:0;
@@ -48,13 +48,15 @@
 		z-index: 10;
 		transition:1s;
 		padding:auto;
+		line-height:200px;
 	}
 	
 	div.gallery_file:hover:after {
+		content:'삭제';
 		background-color: rgba(0,0,0,0.7);
 		color:white;
 		text-align: center;
-		vertical-align: middle;
+		
 		cursor: pointer
 	}
 	
@@ -62,6 +64,7 @@
 	div#gallery_files img {
 		margin:2px;
 		width: 100%;
+		height: 100%;
 	}
 	
 	div#gallery_botton_box {
@@ -193,6 +196,7 @@ if(gallery_files) {
 				.then(result=>{
 					if(result === "OK") {
 						alert("삭제성공")
+						tag.remove()
 					} else if( result === "NO") {
 						alert("서버가 모른대")
 					} else {
