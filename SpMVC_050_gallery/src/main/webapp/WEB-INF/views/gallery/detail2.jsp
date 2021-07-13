@@ -26,11 +26,42 @@
 		display: flex;
 		flex-wrap: wrap;;
 		border:1px solid blue;
-		height: 200px;
 	}
+	
+	div#gallery_files div.gallery_file {
+		width: 200px;
+		height:200px;
+		padding:5px;
+		overflow: hidden;
+		position: relative;
+	}
+	
+	div.gallery_file:after {
+		content: "삭제";
+		position: absolute;
+		left:0;
+		top:0;
+		bottom: 0;
+		right: 0; 
+		background-color: transparent;
+		color:transparent;
+		z-index: 10;
+		transition:1s;
+		padding:auto;
+	}
+	
+	div.gallery_file:hover:after {
+		background-color: rgba(0,0,0,0.7);
+		color:white;
+		text-align: center;
+		vertical-align: middle;
+		cursor: pointer
+	}
+	
+	
 	div#gallery_files img {
 		margin:2px;
-		width: 200px;
+		width: 100%;
 	}
 	
 	div#gallery_botton_box {
@@ -86,12 +117,14 @@
 
 <div id="gallery_files">
 	<c:forEach items="${GALLERY.fileList}" var="FILE" >
-		<c:if test="${empty FILE.file_upname}">
-			<img src="${rootPath}/files/noImage.png" height="100px" >
-		</c:if>
-		<c:if test="${not empty FILE.file_upname}">
-			<img src="${rootPath}/files/${FILE.file_upname}" height="100px" >
-		</c:if>
+		<div class="gallery_file" data-fseq="${FILE.file_seq}">
+			<c:if test="${empty FILE.file_upname}">
+				<img src="${rootPath}/files/noImage.png" height="100px" >
+			</c:if>
+			<c:if test="${not empty FILE.file_upname}">
+				<img src="${rootPath}/files/${FILE.file_upname}">
+			</c:if>
+		</div>
 	</c:forEach>
 </div>
 <div id="gallery_botton_box">
@@ -145,6 +178,33 @@ delete_button.addEventListener("click",()=>{
 		
 	}
 })
+
+let gallery_files = document.querySelector("div#gallery_files")
+if(gallery_files) {
+	
+	gallery_files.addEventListener("click",(e)=>{
+		let tag = e.target
+		if(tag.tagName === "DIV" && tag.className.includes("gallery_file")) {
+			let seq = tag.dataset.fseq
+			if(confirm( seq + "이미지 삭제")) {
+				
+				fetch("${rootPath}/gallery/file/delete/" + seq)
+				.then( response=>response.text() )
+				.then(result=>{
+					if(result === "OK") {
+						alert("삭제성공")
+					} else if( result === "NO") {
+						alert("서버가 모른대")
+					} else {
+						alert("삭제 실패")
+					}
+				})
+			}
+		}
+	})
+}
+
+
 
 
 </script>
