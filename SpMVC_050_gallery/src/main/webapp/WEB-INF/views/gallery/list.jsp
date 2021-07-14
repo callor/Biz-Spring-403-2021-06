@@ -36,7 +36,7 @@
 		<div>
 			<h3>
 				<a href="${rootPath}/gallery/detail2/${GALLERY.g_seq}">
-					${GALLERY.g_subject}
+					${GALLERY.g_subject}( ${GALLERY.g_seq} )
 				</a>
 			</h3>
 			<p>${GALLERY.g_content}</p>
