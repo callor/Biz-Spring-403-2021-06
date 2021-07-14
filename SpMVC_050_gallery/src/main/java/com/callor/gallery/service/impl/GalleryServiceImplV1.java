@@ -207,42 +207,7 @@ public class GalleryServiceImplV1 implements GalleryService {
 		return pageList;
 	}
 	
-	@Override
-	public List<GalleryDTO> selectAllPage(int pageNum, Model model) throws Exception {
-		// 1 전체 데이터 SELECT 하기
-		List<GalleryDTO> gaListAll = gaDao.selectAll();
-
-		// 2 pageNum가 1이라면 list에서 0번째 요소 ~ 9번째 요소까지 추출하기
-		//   pageNum가 2라면 list에서 10번째 요소 ~ 19번째 요소까지 추출하기
-		//   pageNum가 3라면 list에서 20번째 요소 ~ 29번째 요소까지 추출하기
-		
-		int totalCount = gaListAll.size();
-		
-		int start = (pageNum - 1) * 10;
-		int end = pageNum * 10;
-		
-		if( pageNum * 10 > totalCount - 10) {
-			end = totalCount;
-			start = end - 10;
-		}
-		
-		List<GalleryDTO> pageList = new ArrayList<>();
-		for(int i = start; i < end ; i++) {
-			pageList.add(gaListAll.get(i));
-		}
-		
-		
-		int listPerPage = 10;
-		int navsPerPage = 10;
-		PageDTO pageDTO = PageDTO.builder()
-					.totalPage(totalCount / navsPerPage)
-					.listPerPage(listPerPage)
-					.navsPerPage(navsPerPage)
-					.build();
-		model.addAttribute("PAGE_INFO",pageDTO);
-		return pageList;
-		
-	}
+	
 
 	@Override
 	public List<GalleryDTO> findBySearchPage(int pageNum, String search) {
@@ -255,7 +220,6 @@ public class GalleryServiceImplV1 implements GalleryService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 	
 }

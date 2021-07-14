@@ -74,7 +74,7 @@ public class GalleryController {
 			model.addAttribute("PAGE_NUM",intPageNum);
 		}
 		
-		List<GalleryDTO> gallerPageList = gaService.selectAllPage(intPageNum, model);
+		List<GalleryDTO> gallerPageList = gaService.selectAllPage(intPageNum);
 		model.addAttribute("GALLERYS",gallerPageList);
 		
 		model.addAttribute("BODY","GA-LIST");

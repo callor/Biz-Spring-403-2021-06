@@ -24,7 +24,6 @@ public interface GalleryService {
 	 *  일정한 분량으로 잘라서 List를 return g하기
 	 */
 	public List<GalleryDTO> selectAllPage(int pageNum) throws Exception;
-
 	
 
 	/*
