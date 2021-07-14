@@ -35,42 +35,7 @@ header {
 }
 
 
-section#image_list_section {
-	width: 90vw;
-	margin: 20px auto;
-	display: flex;
-	flex-wrap: wrap;
-}
 
-div.ga_box {
-	flex: 1 0 30%;
-	display: flex;
-	border: 1px solid blue;
-	padding: 1rem;
-	margin: 1rem;
-	border-radius: 10px;
-	box-shadow: 5px 5px 5px 3px rgba(0, 0, 0, 0.3);
-}
-
-div.ga_box div:first-of-type {
-	flex: 1;
-}
-
-div.ga_box div:last-of-type {
-	flex: 3;
-}
-
-@media ( max-width :1500px) {
-	div.ga_box {
-		flex: 1 45%;
-	}
-}
-
-@media ( max-width :1000px) {
-	div.ga_box {
-		flex: 1 0 100%;
-	}
-}
 
 form {
 	width: 95%;

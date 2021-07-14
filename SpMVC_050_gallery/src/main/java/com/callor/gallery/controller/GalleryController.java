@@ -69,10 +69,14 @@ public class GalleryController {
 					String pageNum,	Model model) throws Exception {
 		
 		int intPageNum = Integer.valueOf(pageNum);
-		List<GalleryDTO> gaList = gaService.selectAllPage(intPageNum);
 		
-		// List<GalleryDTO> gaList = gaService.selectAll();
-		model.addAttribute("GALLERYS",gaList);
+		if(intPageNum > 0) {
+			model.addAttribute("PAGE_NUM",intPageNum);
+		}
+		
+		List<GalleryDTO> gallerPageList = gaService.selectAllPage(intPageNum, model);
+		model.addAttribute("GALLERYS",gallerPageList);
+		
 		model.addAttribute("BODY","GA-LIST");
 		return "home";
 		
