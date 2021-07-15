@@ -50,7 +50,7 @@
 	<ul class="page_nav_main">
 		<li data-num="1">처음</li>
 		<li data-num="${PAGE_NUM - 1}">&lt;</li>
-		<c:forEach begin="1" end="10" var="pageNum">
+		<c:forEach begin="${PAGE_NAV.startPage}" end="${PAGE_NAV.endPage}" var="pageNum">
 		
 			<li data-num="${pageNum}"
 			class="
@@ -59,7 +59,7 @@
 			>${pageNum}</li>
 		</c:forEach>
 		<li data-num="${PAGE_NUM + 1}">&gt;</li>
-		<li data-num="99">끝</li>
+		<li data-num="${PAGE_NAV.totalPages}">끝</li>
 	</ul>
 </section>
 <script>

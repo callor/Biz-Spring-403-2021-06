@@ -24,6 +24,7 @@ public interface GalleryService {
 	 *  일정한 분량으로 잘라서 List를 return g하기
 	 */
 	public List<GalleryDTO> selectAllPage(int pageNum) throws Exception;
+	public List<GalleryDTO> selectAllPage(int intPageNum, Model model) throws Exception;
 	
 
 	/*
@@ -44,6 +45,7 @@ public interface GalleryService {
 	
 	public int delete(Long g_seq);
 	public int file_delete(Long g_seq);
+	
 	
 
 }

@@ -74,8 +74,11 @@ public class GalleryController {
 			model.addAttribute("PAGE_NUM",intPageNum);
 		}
 		
-		List<GalleryDTO> gallerPageList = gaService.selectAllPage(intPageNum);
-		model.addAttribute("GALLERYS",gallerPageList);
+		// tbl_gallery table 전체 List를 가져와서
+		// 전체 리스트를 표시하기 위해서 몇페이지의 nav가 필요한지
+		
+		List<GalleryDTO> gallerPageList = gaService.selectAllPage(intPageNum,model);
+		// model.addAttribute("GALLERYS",gallerPageList);
 		
 		model.addAttribute("BODY","GA-LIST");
 		return "home";

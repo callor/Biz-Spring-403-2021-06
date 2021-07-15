@@ -207,6 +207,44 @@ public class GalleryServiceImplV1 implements GalleryService {
 		return pageList;
 	}
 	
+	@Override
+	public List<GalleryDTO> selectAllPage(int intPageNum, Model model) throws Exception {
+
+		
+		List<GalleryDTO> pageList = this.selectAllPage(intPageNum);
+		
+		int galleryTotal = gaDao.countAll();
+		
+		int totalPages = galleryTotal / 10;
+		
+		// 현재 선택된 page가 14 라면
+		// page / 2를 하여 선택된 page 번호에서 값을 뺄셈하여 시작 값으로 설정
+		// startPage = 7
+		int startPage = (intPageNum - (10/2));
+		int endPage = startPage + 10;
+		
+		
+		PageDTO pageDTO = PageDTO.builder()
+						.totalPages(totalPages)
+						.startPage(startPage)
+						.endPage(endPage).build();
+		
+		model.addAttribute("PAGE_NAV",pageDTO);
+		
+//		model.addAttribute("TOTAL_PAGE",totalPages);
+//		model.addAttribute("START_PAGE",startPage);
+//		model.addAttribute("END_PAGE",endPage);
+		
+		
+		
+		
+		
+		model.addAttribute("GALLERYS",pageList);
+		
+		return null;
+	
+	}
+	
 	
 
 	@Override
@@ -220,6 +258,8 @@ public class GalleryServiceImplV1 implements GalleryService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 	
 }

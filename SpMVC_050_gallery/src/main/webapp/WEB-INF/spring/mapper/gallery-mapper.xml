@@ -5,6 +5,10 @@
 
 <mapper namespace="com.callor.gallery.persistance.ext.GalleryDao">
 
+	<select id="countAll" resultType="Integer"> 
+		SELECT COUNT(*) FROM tbl_gallery
+	</select>
+
 	<select id="selectAll" resultType="GalleryDTO">
 		SELECT * FROM tbl_gallery
 		ORDER BY g_date DESC, g_time DESC
