@@ -50,14 +50,22 @@
 	<ul class="page_nav_main">
 		<li data-num="1">처음</li>
 		<li data-num="${PAGE_NUM - 1}">&lt;</li>
-		<c:forEach begin="${PAGE_NAV.startPage}" end="${PAGE_NAV.endPage}" var="pageNum">
-		
+		<c:if test="${PAGE_NAV.startPage > 2}">
+			<li>....</li>
+		</c:if>
+		<c:forEach begin="${PAGE_NAV.startPage}" 
+						end="${PAGE_NAV.endPage}" 
+						var="pageNum">
+						
 			<li data-num="${pageNum}"
 			class="
 			<c:if test="${PAGE_NUM == pageNum}">active</c:if>
 			"
 			>${pageNum}</li>
 		</c:forEach>
+		<c:if test="${PAGE_NAV.endPage < PAGE_NAV.totalPages}">
+			<li>....</li>
+		</c:if>
 		<li data-num="${PAGE_NUM + 1}">&gt;</li>
 		<li data-num="${PAGE_NAV.totalPages}">끝</li>
 	</ul>

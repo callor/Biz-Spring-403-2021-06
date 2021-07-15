@@ -47,6 +47,7 @@ div.gallery_box div:last-of-type {
 	}
 }
 </style>
+<%@ include file="/WEB-INF/views/include/include_gallery_search.jspf" %>
 <section id="image_list_section">
 <c:forEach
 	items="${GALLERYS}"

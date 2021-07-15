@@ -17,6 +17,28 @@
 		SELECT * FROM tbl_gallery
 		WHERE g_seq = #{g_seq}
 	</select>
+	
+	<!--  매개변수로 칼럼명과 검색어를 전달받아서 조건검색하기 -->
+	<!--  
+	동적 SQL
+	전달받은 매개변수에 따라서 SQL이 바뀌는 코드 
+	-->
+	<select id="findBySearch" resultType="GalleryDTO">
+		SELECT * FROM tbl_gallery
+		<if test="text != null and text != 'NONE' ">
+			<if test="column == 'g_subject' ">
+				WHERE g_subject LIKE CONCAT('%', #{text}, '%')
+			</if>
+			<if test="column == 'g_writer' ">
+				WHERE g_writer  LIKE CONCAT('%', #{text}, '%')
+			</if>
+			<if test="column == 'g_content' ">
+				WHERE g_content  LIKE CONCAT('%', #{text}, '%')
+			</if>
+		</if>
+	</select>
+	
+	
 
 	<!-- 
 	select된 결과를 DTO와 매칭하는 중간단계 RowMapper

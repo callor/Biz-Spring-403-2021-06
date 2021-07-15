@@ -43,9 +43,11 @@ public interface GalleryService {
 	public List<GalleryFilesDTO> findByIdGalleryFiles(Long g_seq);
 	public GalleryDTO findByIdGellery(Long g_seq);
 	
+	public List<GalleryDTO> findBySearchPage(String search_column,
+							String search_text, int pageNum, Model model);
+	
 	public int delete(Long g_seq);
 	public int file_delete(Long g_seq);
-	
 	
 
 }
