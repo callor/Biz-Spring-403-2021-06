@@ -1,0 +1,102 @@
+@charset "UTF-8";
+	div#gallery_box {
+		width: 90%;
+		margin:10px auto;
+		border:1px solid #aaa;
+		display: flex;
+	}
+	
+	div#gallery_box div:first-of-type {
+		flex:1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding:10px;
+	}
+	div#gallery_box div:last-of-type {
+		flex:3;
+	}
+	div#gallery_files {
+		width:90%;
+		margin:10px auto;
+		display: flex;
+		flex-wrap: wrap;;
+		border:1px solid blue;
+	}
+	
+	div#gallery_files div.gallery_file {
+		width: 200px;
+		height:200px;
+		padding:5px;
+		overflow: hidden;
+		position: relative;
+	}
+	
+	div.gallery_file:after {
+		content: "";
+		position: absolute;
+		left:0;
+		top:0;
+		bottom: 0;
+		right: 0; 
+		background-color: transparent;
+		color:transparent;
+		z-index: 10;
+		transition:0.5s;
+
+		/* 
+		box 내의 text의 그려지는 높이를 box의 높이와 같게 만들면
+		text가 box의 세로방향 가운데 정렬이 된다
+		*/
+		line-height:200px;
+		text-align: center;
+	}
+	
+	div.gallery_file:hover:after {
+		content:'\f2ed';
+		
+		font-size:30px;
+		font-family:"Font Awesome 5 Free";
+		
+		
+		background-color: rgba(0,0,0,0.5);
+		color:white;
+		cursor: pointer
+		
+		
+	}
+	
+	
+	div#gallery_files img {
+		margin:2px;
+		width: 100%;
+		height: 100%;
+	}
+	
+	div#gallery_botton_box {
+		width: 90%;
+		margin:5px auto;
+		text-align:right;
+	}
+	
+	div#gallery_botton_box button {
+		display:inline-block;
+		padding:12px 20px;
+		outline: 0;
+		border: 0;
+		border-radius: 10px;
+	}
+	
+	div#gallery_botton_box button:hover {
+		box-shadow: 2px 2px 2px #333;
+		cursor: pointer;
+	}
+	
+	div#gallery_botton_box button:nth-of-type(1) {
+		background-color: blue;
+		color:white;
+	}
+	div#gallery_botton_box button:nth-of-type(2) {
+		background-color: red;
+		color:yellow;
+	}
