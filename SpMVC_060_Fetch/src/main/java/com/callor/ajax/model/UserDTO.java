@@ -6,18 +6,7 @@ public class UserDTO {
 	private String name;
 	private String tel;
 	private int age;
-	
-	public UserDTO(String user_id, String name, String tel, int age) {
-		super();
-		this.user_id = user_id;
-		this.name = name;
-		this.tel = tel;
-		this.age = age;
-	}
-	public UserDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	private String addr;
 	public String getUser_id() {
 		return user_id;
 	}
@@ -42,10 +31,25 @@ public class UserDTO {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	@Override
-	public String toString() {
-		return "UserDTO [user_id=" + user_id + ", name=" + name + ", tel=" + tel + ", age=" + age + "]";
+	public String getAddr() {
+		return addr;
 	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+	public UserDTO(String user_id, String name, String tel, int age, String addr) {
+		super();
+		this.user_id = user_id;
+		this.name = name;
+		this.tel = tel;
+		this.age = age;
+		this.addr = addr;
+	}
+	public UserDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	
 

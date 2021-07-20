@@ -18,7 +18,7 @@ if (button) {
         },
         body: jsonFormData,
       };
-      fetch(`${rootPath}/form`, jsonOption)
+      fetch(`${rootPath}/form/json`, jsonOption)
         .then((res) => res.json())
         .then((result) => {
           document.writeln(JSON.stringify(result));
@@ -31,10 +31,12 @@ if (button) {
     button_2.addEventListener("click", (e) => {
       let form1 = document.querySelector("form#user_form");
       const formData = new FormData(form1);
+      formData.append("addr", "광주시");
+      console.table(formData);
 
-      fetch(`${rootPath}/form`, {
+      fetch(`${rootPath}/form/data`, {
         method: "POST",
-        body: new URLSearchParams({ formData, name: "홍길동" }),
+        body: new URLSearchParams(formData),
       })
         .then((res) => res.json())
         .then((result) => document.writeln(JSON.stringify(result)));

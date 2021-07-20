@@ -65,9 +65,17 @@ public class HomeController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/form", method = RequestMethod.POST)
-	public UserDTO form(@RequestBody UserDTO userDTO, Model model) {
+	@RequestMapping(value = "/form/json", method = RequestMethod.POST)
+	public UserDTO form_json(@RequestBody UserDTO userDTO, Model model) {
 		return userDTO;
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "/form/data", method = RequestMethod.POST)
+	public UserDTO form_data(UserDTO userDTO, Model model) {
+		return userDTO;
+	}
+
+	
 	
 }
